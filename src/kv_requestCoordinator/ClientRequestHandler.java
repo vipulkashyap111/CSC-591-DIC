@@ -33,7 +33,7 @@ public class ClientRequestHandler implements Runnable {
             if (req_packet == null)
                 System.out.println("Handle NULL case");
 
-            System.out.println("Request for ID : " + req_packet.clientReqId);
+            System.out.println("Request for ID : " + req_packet.getClientReqId());
 
             handle_command(req_packet);
         } catch (IOException e) {

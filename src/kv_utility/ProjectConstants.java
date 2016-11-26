@@ -11,7 +11,10 @@ public class ProjectConstants {
     public static int ONE = 1;
 
     /* Return Status */
-    public static int SUCCESS = 0;
-    public static int FAILURE = -1;
+    public static final int SUCCESS = 0;
+    public static final int FAILURE = -1;
 
+    /* Command list */
+    public static final int PUT = 0;
+    public static final int GET = 1;
 }

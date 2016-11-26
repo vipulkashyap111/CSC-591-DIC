@@ -20,14 +20,6 @@ public class ClientRequestPacket implements Serializable {
         this.command = command;
     }
 
-    public String getClientReqId() {
-        return clientReqId;
-    }
-
-    public void setClientReqId(String clientReqId) {
-        this.clientReqId = clientReqId;
-    }
-
     public String[] getArguments() {
         return arguments;
     }

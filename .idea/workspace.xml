@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Added Data Structure Classes">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" afterPath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" afterPath="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
     </list>
     <ignored path="DistKVStore.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +28,8 @@
       <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
+            <state relative-caret-position="150">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#532#533#0" expanded="true" />
@@ -42,20 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientRequestPacket.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClientRequestPacket.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="15" />
+            <state relative-caret-position="75">
+              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding>
-                <element signature="e#356#357#0" expanded="true" />
-                <element signature="e#386#387#0" expanded="true" />
+                <element signature="e#357#358#0" expanded="true" />
+                <element signature="e#387#388#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectConstants.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProjectConstants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -68,8 +65,8 @@
       <file leaf-file-name="ClientResponsePacket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="135">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -167,10 +164,10 @@
         <option value="$PROJECT_DIR$/src/kv_utility/HashedBucketMap.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ProjectGlobal.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
-        <option value="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
+        <option value="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
       </list>
     </option>
   </component>
@@ -713,7 +710,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1480188430543</updated>
-      <workItem from="1480188438007" duration="10227000" />
+      <workItem from="1480188438007" duration="10341000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Packages">
       <created>1480193145476</created>
@@ -757,11 +754,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480199927627</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Data Structure Classes">
+      <created>1480203025343</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1480203025343</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10227000" />
+    <option name="totallyTimeSpent" value="10341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -920,32 +924,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="135">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="15" />
-          <folding>
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -954,6 +935,29 @@
         <state relative-caret-position="105">
           <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

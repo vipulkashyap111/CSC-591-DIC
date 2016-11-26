@@ -4,9 +4,11 @@ package kv_utility;
  * Created by abhishek on 11/26/16.
  */
 public class ProjectConstants {
-    public static final int MN_LISTEN_PORT = 5000;
-    public static final int REQUEST_BACK_LOG = 25;
-    public static final int NUM_OF_WORKERS = 20;
+    public static int MN_LISTEN_PORT = 5000;
+    public static int RC_LISTEN_PORT = 7000;
+    public static int REQUEST_BACK_LOG = 25;
+    public static int NUM_OF_WORKERS = 20;
+    public static int ONE = 1;
 
     /* Return Status */
     public static final int SUCCESS = 0;

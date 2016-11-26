@@ -9,7 +9,7 @@ public class CommandHandler
 {
     public static void main(String[] args)
     {
-        System.out.println("Asd");
+        System.out.println("Assd");
 
     }
 }

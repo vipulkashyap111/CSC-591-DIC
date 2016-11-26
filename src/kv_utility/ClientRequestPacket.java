@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public class ClientRequestPacket implements Serializable {
     private int command;
-    private String clientReqId;
     private String[] arguments;
     private boolean replicate_ind;
     private String key;

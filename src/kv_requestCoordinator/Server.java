@@ -1,6 +1,7 @@
 package kv_requestCoordinator;
 
 import kv_utility.ProjectConstants;
+import kv_utility.ProjectGlobal;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -41,7 +42,12 @@ public class Server {
 
     public static void startServer() {
         try {
+            setUpServer();
 
+            while (ProjectGlobal.is_RC_on) {
+
+
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package MemNodes;
+package mem_nodes;
 
 /**
  * Created by abhishek on 11/26/16.

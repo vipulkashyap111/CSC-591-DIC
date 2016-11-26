@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Test">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utility/ProjectConstants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MemNodes/CommandHandler.java" afterPath="$PROJECT_DIR$/src/mem_nodes/CommandHandler.java" />
+    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Name Update">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/mem_nodes/CommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/utility/ProjectConstants.java" afterPath="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DistKVStore.iws" />
@@ -26,18 +26,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mem_nodes/CommandHandler.java">
+      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectConstants.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/utility/ProjectConstants.java">
+      <file leaf-file-name="ProjectConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
@@ -76,6 +76,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/MemNodes/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/utility/ProjectConstants.java" />
+        <option value="$PROJECT_DIR$/src/mem_nodes/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
       </list>
     </option>
   </component>
@@ -151,7 +153,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="utility" />
+              <option name="myItemId" value="kv_utility" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -169,7 +171,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mem_nodes" />
+              <option name="myItemId" value="kv_memNodes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -617,7 +619,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1480188430543</updated>
-      <workItem from="1480188438007" duration="2473000" />
+      <workItem from="1480188438007" duration="2618000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Packages">
       <created>1480193145476</created>
@@ -640,11 +642,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480193600195</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Name Update">
+      <created>1480193697947</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1480193697947</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2473000" />
+    <option name="totallyTimeSpent" value="2618000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -694,7 +703,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Basic Packages" />
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Name Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Name Update" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -711,18 +721,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mem_nodes/CommandHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        <state relative-caret-position="75">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/ProjectConstants.java">
+    <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>

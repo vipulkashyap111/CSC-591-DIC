@@ -26,4 +26,6 @@ public class ProjectConstants {
     public static final int KNF = 1;
     public static final String MESG_KF = "Fetched the key from Data Store";
     public static final String SUCCESS_PUT = "Successfully Stored the Value";
+    public static final int REGISTER = 2;
+    public static final int MAX_NUM_NODES = 100;
 }

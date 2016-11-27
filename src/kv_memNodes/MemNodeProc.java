@@ -21,6 +21,7 @@ public class MemNodeProc {
     private static KeyValueHM data_store = null;
     private static Date unixTimeGenerator;
     private static HashedBucketMap bucket_map = null;
+    private static DoubleLL time_sorted_list = null;
 
     public static void main(String arg[]) {
         System.out.println("Starting Memory Node Server");
@@ -31,7 +32,10 @@ public class MemNodeProc {
         }
         String proxy_address = arg[ProjectConstants.ZERO];
         try {
-            notifyProxy(proxy_address);
+            if (notifyProxy(proxy_address)) {
+                System.out.println("");
+                return;
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
             System.exit(ProjectConstants.SUCCESS);
@@ -65,16 +69,20 @@ public class MemNodeProc {
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
         setData_store(new KeyValueHM(KVType.ORIGINAL));
         setBucket_map(new HashedBucketMap());
+        setTime_sorted_list(new DoubleLL());
         setUnixTimeGenerator(new Date());
     }
 
     /* Notify the proxy which will update the request co-ordinator to upadte the ring structure */
-    public static void notifyProxy(String proxy_address) throws IOException {
+    public static boolean notifyProxy(String proxy_address) throws IOException {
         Socket proxy_connect = new Socket(proxy_address, ProjectConstants.PR_LISTEN_PORT);
 
         ClientRequestPacket req_packet = new ClientRequestPacket();
         req_packet.setCommand(ProjectConstants.ADD_MEM_NODES);
         req_packet.setIp_address(InetAddress.getLocalHost().getHostAddress());
+        PacketTransfer.sendRequest(req_packet, proxy_connect);
+        ClientResponsePacket res_packet = PacketTransfer.recv_response(proxy_connect);
+        return !(res_packet == null || res_packet.getResponse_code() != ProjectConstants.SUCCESS);
     }
 
     public static Date getUnixTimeGenerator() {
@@ -91,5 +99,13 @@ public class MemNodeProc {
 
     public static void setBucket_map(HashedBucketMap bucket_map) {
         MemNodeProc.bucket_map = bucket_map;
+    }
+
+    public static DoubleLL getTime_sorted_list() {
+        return time_sorted_list;
+    }
+
+    public static void setTime_sorted_list(DoubleLL time_sorted_list) {
+        MemNodeProc.time_sorted_list = time_sorted_list;
     }
 }

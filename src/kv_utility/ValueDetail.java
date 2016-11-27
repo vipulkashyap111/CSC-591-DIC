@@ -7,7 +7,8 @@ public class ValueDetail {
     private String value = null;
     private long unixTS = 0;
     private int hashed_value = 0;
-
+    public ValueDetail prev = null;
+    public ValueDetail next = null;
 
     public String getValue() {
         return value;

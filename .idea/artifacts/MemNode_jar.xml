@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MemNode:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MemNode_jar</output-path>
+    <root id="archive" name="MemNodeProc.jar">
+      <element id="module-output" name="DistKVStore" />
+    </root>
+  </artifact>
+</component>

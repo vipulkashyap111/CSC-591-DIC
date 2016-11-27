@@ -31,7 +31,7 @@ public class ProxyServer {
     public void setUpProxy() throws IOException {
         rc_data = new RCList();
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
-        proxy_connect = new ServerSocket(ProjectConstants.PROXY_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
+        proxy_connect = new ServerSocket(ProjectConstants.PR_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
     }
 
     synchronized public int getNextIndex() {

@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by gmeneze on 11/26/16.
  */
+
 public class RequestCoordinator {
     Ring ring;
     private static ExecutorService workers;

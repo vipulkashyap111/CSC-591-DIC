@@ -52,9 +52,6 @@ public class ClientRequestHandler implements Runnable {
     public void handle_command(ClientRequestPacket reqPacket) {
         ClientResponsePacket resPacket = null;
         switch (reqPacket.getCommand()) {
-            case ProjectConstants.REGISTER:
-                //TODO
-                break;
             case ProjectConstants.GET:
                 resPacket = rc.get(reqPacket);
                 break;

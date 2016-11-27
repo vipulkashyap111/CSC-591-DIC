@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Proxy Code Base">
+    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Request Packet field for KVType.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/RequestHandle.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/RequestHandle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_proxy/ProxyCommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_proxy/ProxyCommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" afterPath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/KeyValueHM.java" afterPath="$PROJECT_DIR$/src/kv_utility/KeyValueHM.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" afterPath="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
     </list>
     <ignored path="DistKVStore.iws" />
@@ -47,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/kv_memNodes/RequestHandle.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="55" column="47" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+              <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#641#642#0" expanded="true" />
@@ -57,7 +51,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
@@ -65,6 +59,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectConstants.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,13 +135,13 @@
         <option value="$PROJECT_DIR$/src/kv_proxy/RCList.java" />
         <option value="$PROJECT_DIR$/src/kv_proxy/ProxyServer.java" />
         <option value="$PROJECT_DIR$/src/kv_proxy/ProxyProc.java" />
-        <option value="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
         <option value="$PROJECT_DIR$/src/kv_proxy/ProxyCommandHandler.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/RequestHandle.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/KeyValueHM.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
       </list>
     </option>
   </component>
@@ -788,7 +792,7 @@
       <option name="presentableId" value="Default" />
       <updated>1480188430543</updated>
       <workItem from="1480188438007" duration="34612000" />
-      <workItem from="1480268551138" duration="12122000" />
+      <workItem from="1480268551138" duration="12184000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Packages">
       <created>1480193145476</created>
@@ -888,11 +892,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480280085524</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Request Packet field for KVType.">
+      <created>1480283465196</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1480283465196</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46734000" />
+    <option name="totallyTimeSpent" value="46796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -965,7 +976,8 @@
     <MESSAGE value="Added Data Structure Classes" />
     <MESSAGE value="Added Code Base for Memory Nodes" />
     <MESSAGE value="Proxy Code Base" />
-    <option name="LAST_COMMIT_MESSAGE" value="Proxy Code Base" />
+    <MESSAGE value="Request Packet field for KVType." />
+    <option name="LAST_COMMIT_MESSAGE" value="Request Packet field for KVType." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1229,14 +1241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="91" selection-start-line="34" selection-start-column="91" selection-end-line="34" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_proxy/ProxyRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -1250,7 +1254,7 @@
     <entry file="file://$PROJECT_DIR$/src/kv_memNodes/RequestHandle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="55" column="47" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#641#642#0" expanded="true" />
@@ -1300,6 +1304,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kv_utility/ProjectConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -56,4 +56,8 @@ public class Server {
             cleanUpServer();
         }
     }
+
+    public static void main(String[] args) {
+        startServer();
+    }
 }

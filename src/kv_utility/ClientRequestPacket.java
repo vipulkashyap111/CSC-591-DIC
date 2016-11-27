@@ -3,11 +3,10 @@ package kv_utility;
 import java.io.Serializable;
 
 /**
- * Created by abhishek on 11/26/16.
+ * Created by gmeneze on 11/26/16.
  */
 public class ClientRequestPacket implements Serializable {
     private int command;
-    private String[] arguments;
     private boolean replicate_ind;
     private String key;
     private String value;
@@ -18,14 +17,6 @@ public class ClientRequestPacket implements Serializable {
 
     public void setCommand(int command) {
         this.command = command;
-    }
-
-    public String[] getArguments() {
-        return arguments;
-    }
-
-    public void setArguments(String[] arguments) {
-        this.arguments = arguments;
     }
 
     public boolean isReplicate_ind() {

@@ -28,7 +28,6 @@ public class Ring {
                 return nodeIdToIp.get(i);
             }
         }
-
         return nodeIdToIp.get(0);
     }
 }

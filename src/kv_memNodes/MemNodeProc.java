@@ -67,7 +67,7 @@ public class MemNodeProc {
         host_address = InetAddress.getLocalHost();
         request_listerner = new ServerSocket(ProjectConstants.MN_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
-        setData_store(new KeyValueHM(KVType.ORIGINAL));
+        setData_store(new KeyValueHM());
         setBucket_map(new HashedBucketMap());
         setTime_sorted_list(new DoubleLL());
         setUnixTimeGenerator(new Date());

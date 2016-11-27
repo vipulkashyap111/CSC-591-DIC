@@ -9,6 +9,7 @@ public class ClientRequestPacket implements Serializable {
     private int command;
     private boolean replicate_ind;
     private String key = null;
+    private KVType storage_type;
     private ValueDetail val = new ValueDetail();
     private String ip_address = null;
 
@@ -50,5 +51,13 @@ public class ClientRequestPacket implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public KVType getStorage_type() {
+        return storage_type;
+    }
+
+    public void setStorage_type(KVType storage_type) {
+        this.storage_type = storage_type;
     }
 }

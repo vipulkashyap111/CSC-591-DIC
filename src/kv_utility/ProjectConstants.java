@@ -12,6 +12,7 @@ public class ProjectConstants {
     public static final int NUM_OF_WORKERS = 20;
     public static final int CLEAN_UP_WT_TM = 10;
     public static final int ONE = 1;
+    public static final int THREE = 3;
     public static final int ZERO = 0;
 
     /* Return Status */
@@ -32,6 +33,7 @@ public class ProjectConstants {
     public static final String MESG_RCF = "Found request Co-Ordinator";
     public static final String MESG_KF = "Fetched the key from Data Store";
     public static final String SUCCESS_PUT = "Successfully Stored the Value";
+    public static final String MESG_ADDED_RC = "Successfully added the Request Co-Ordinator";
     public static final int REGISTER = 2;
     public static final int MAX_NUM_NODES = 100;
 }

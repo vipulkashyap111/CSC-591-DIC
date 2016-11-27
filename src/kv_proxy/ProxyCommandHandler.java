@@ -24,6 +24,7 @@ public class ProxyCommandHandler {
         res_packet.setMessage(ProjectConstants.MESG_RCF);
         res_packet.setResponse_code(ProjectConstants.SUCCESS);
         res_packet.setRc(rcd);
+        System.out.println("Successfully gave RC  : " + rcd.ip);
         return res_packet;
     }
 
@@ -40,6 +41,19 @@ public class ProxyCommandHandler {
         res_packet.setMessage(ProjectConstants.MESG_RCF);
         res_packet.setResponse_code(ProjectConstants.SUCCESS);
         res_packet.setRc_list(rc_list);
+        System.out.println("Successfully gave RC Ring : " + rc_list.size());
+        return res_packet;
+    }
+
+    public static ClientResponsePacket handleAddRC(ClientRequestPacket req_packet) {
+        ClientResponsePacket res_packet = new ClientResponsePacket();
+        ProxyServer ps_inst = ProxyProc.ps;
+        RCDetail rcd = new RCDetail();
+        rcd.ip = new String(req_packet.getIp_address());
+        ps_inst.rc_data.add(rcd);
+        res_packet.setMessage(ProjectConstants.MESG_ADDED_RC);
+        res_packet.setResponse_code(ProjectConstants.SUCCESS);
+        System.out.println("Successfully added the RC Node : " + rcd.ip);
         return res_packet;
     }
 }

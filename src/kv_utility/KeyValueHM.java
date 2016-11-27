@@ -7,22 +7,30 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class KeyValueHM {
     private ConcurrentHashMap<String, ValueDetail> in_mem_data_store = null;
-    private KVType storage_type = null;
+    private ConcurrentHashMap<String, ValueDetail> in_mem_repl_data_store = null;
 
-    public KeyValueHM(KVType storage_type) {
+    public KeyValueHM() {
         this.in_mem_data_store = new ConcurrentHashMap<>();
-        this.storage_type = this.storage_type;
     }
 
-    public boolean containsKey(String key) {
-        return in_mem_data_store.containsKey(key);
+    public boolean containsKey(String key, KVType storage_type) {
+        if (storage_type == KVType.ORIGINAL)
+            return in_mem_data_store.containsKey(key);
+        else
+            return in_mem_repl_data_store.containsKey(key);
     }
 
-    public ValueDetail get(String key) {
-        return in_mem_data_store.get(key);
+    public ValueDetail get(String key, KVType storage_type) {
+        if (storage_type == KVType.ORIGINAL)
+            return in_mem_data_store.get(key);
+        else
+            return in_mem_repl_data_store.get(key);
     }
 
-    public ValueDetail put(String key, ValueDetail value) {
-        return in_mem_data_store.put(key, value);
+    public ValueDetail put(String key, ValueDetail value, KVType storage_type) {
+        if (storage_type == KVType.ORIGINAL)
+            return in_mem_data_store.put(key, value);
+        else
+            return in_mem_repl_data_store.put(key, value);
     }
 }

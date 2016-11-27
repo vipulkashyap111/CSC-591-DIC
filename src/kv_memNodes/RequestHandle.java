@@ -30,7 +30,7 @@ public class RequestHandle implements Runnable {
             req_packet = (ClientRequestPacket) ois.readObject();
 
             if (req_packet == null) {
-                System.out.println("Request was not properly recieved!");
+                System.out.println("Request was not properly recieved!!");
                 return;
             }
             handle_request(req_packet);

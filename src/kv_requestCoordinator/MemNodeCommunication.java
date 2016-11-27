@@ -25,6 +25,10 @@ public class MemNodeCommunication implements Runnable {
 
     @Override
     public void run() {
+        if (threadId == 0)
+            requestPacket.setReplicate_ind(true);
+        else
+            requestPacket.setReplicate_ind(false);
         PacketTransfer.sendRequest(requestPacket, socket);
         response[threadId] = PacketTransfer.recv_response(socket);
     }

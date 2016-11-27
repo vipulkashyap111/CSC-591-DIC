@@ -92,6 +92,7 @@ public class Server {
         requestPacket.setCommand(ProjectConstants.ADD_RC_NODES);
         requestPacket.setIp_address(host_address.getHostAddress());
         PacketTransfer.sendRequest(requestPacket, proxySocket);
+
         startServer();
     }
 }

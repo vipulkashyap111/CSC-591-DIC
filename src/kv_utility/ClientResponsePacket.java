@@ -3,7 +3,7 @@ package kv_utility;
 import java.io.Serializable;
 
 /**
- * Created by abhishek on 11/26/16.
+ * Created by gmeneze on 11/26/16.
  */
 public class ClientResponsePacket implements Serializable {
     private String message = null;

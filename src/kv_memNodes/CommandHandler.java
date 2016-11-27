@@ -25,6 +25,9 @@ public class CommandHandler
             res_packet.setVal(val);
             /* Update the time stamp */
             val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
+            /* Update the list */
+            System.out.println("Updating list process : " + MemNodeProc.getTime_sorted_list().removeElement(val));
+            MemNodeProc.getTime_sorted_list().addFirst(val);
         }
         return res_packet;
     }
@@ -36,7 +39,13 @@ public class CommandHandler
         val.setHashed_value(req_packet.getVal().getHashed_value());
         val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
 
+        /* Add to data store */
+        if (MemNodeProc.getData_store().containsKey(req_packet.getKey()))
+            MemNodeProc.getTime_sorted_list().removeElement(val);
         MemNodeProc.getData_store().put(req_packet.getKey(), val);
+
+        /* Add to Time sorted list */
+        MemNodeProc.getTime_sorted_list().addFirst(val);
 
         /* Add to the bucket as per the hash */
         MemNodeProc.getBucket_map().add(req_packet.getVal().getHashed_value(), req_packet.getKey(), val);
@@ -44,5 +53,10 @@ public class CommandHandler
         res_packet.setResponse_code(ProjectConstants.SUCCESS);
         res_packet.setMessage(ProjectConstants.SUCCESS_PUT);
         return res_packet;
+    }
+
+    // public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
+    {
+
     }
 }

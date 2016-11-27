@@ -1,6 +1,9 @@
 package kv_utility;
 
+import kv_proxy.RCDetail;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by gmeneze on 11/26/16.
@@ -10,6 +13,8 @@ public class ClientResponsePacket implements Serializable {
     private int response_code = 0;
     private String key = null;
     private ValueDetail val = new ValueDetail();
+    private RCDetail rc = null;
+    private ArrayList<RCDetail> rc_list = null;
 
     public String getMessage() {
         return message;
@@ -41,5 +46,21 @@ public class ClientResponsePacket implements Serializable {
 
     public void setVal(ValueDetail val) {
         this.val = val;
+    }
+
+    public RCDetail getRc() {
+        return rc;
+    }
+
+    public void setRc(RCDetail rc) {
+        this.rc = rc;
+    }
+
+    public ArrayList<RCDetail> getRc_list() {
+        return rc_list;
+    }
+
+    public void setRc_list(ArrayList<RCDetail> rc_list) {
+        this.rc_list = rc_list;
     }
 }

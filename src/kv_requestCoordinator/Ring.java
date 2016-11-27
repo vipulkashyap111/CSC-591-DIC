@@ -9,7 +9,6 @@ import java.util.HashMap;
 // Nodes IDs will be in the range 0-100
 
 public class Ring {
-
     HashMap<Integer, String> nodeIdToIp;
     DoublyLinkedList ring;
 

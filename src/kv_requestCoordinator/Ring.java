@@ -22,12 +22,18 @@ public class Ring {
         nodeIdToIp.put(nodeId, nodeIp);
     }
 
-    public String getNodeIpForKey(int keyValue) {
+    public String[] getThreeNodeIpForKey(int keyValue) {
+        String[] threeNodeIp = new String[3];
+        int j = 0;
         for (int i = keyValue; keyValue < 100; i++) {
             if (nodeIdToIp.containsKey(i)) {
-                return nodeIdToIp.get(i);
+                threeNodeIp[j] = nodeIdToIp.get(i);
+                j++;
+
+                if (j == 3)
+                    break;
             }
         }
-        return nodeIdToIp.get(0);
+        return threeNodeIp;
     }
 }

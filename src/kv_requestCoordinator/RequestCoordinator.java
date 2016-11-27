@@ -19,22 +19,41 @@ public class RequestCoordinator {
         ring = new Ring();
     }
 
-    public String getIpAddress(String key) {
+    public String[] getIpAddresses(String key) {
         int keyValue = getHash(key);
-        return ring.getNodeIpForKey(keyValue);
+        return ring.getThreeNodeIpForKey(keyValue);
     }
 
     public ClientResponsePacket put(ClientRequestPacket requestPacket) {
-        ClientResponsePacket response = null;
+        ClientResponsePacket[] response = new ClientResponsePacket[3];
         try {
-            Socket socket = new Socket(getIpAddress(requestPacket.getKey()), ProjectConstants.MN_LISTEN_PORT);
-            PacketTransfer.sendRequest(requestPacket, socket);
-            response = PacketTransfer.recv_response(socket);
+            String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
+
+            for (int i = 0; i < 3; i++) {
+                Socket socket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                PacketTransfer.sendRequest(requestPacket, socket);
+                response[i] = PacketTransfer.recv_response(socket);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return response;
+        int failureCount = 0;
+        ClientResponsePacket successPacket = null;
+        ClientResponsePacket failurePacket = null;
+        for (ClientResponsePacket responsePacket : response) {
+            if (responsePacket.getResponse_code() == ProjectConstants.FAILURE) {
+                failurePacket = responsePacket;
+                failureCount++;
+            } else {
+                successPacket = responsePacket;
+            }
+        }
+
+        if (failureCount < 2)
+            return successPacket;
+        else
+            return failurePacket;
     }
 
     public int getHash(String key) {
@@ -42,15 +61,35 @@ public class RequestCoordinator {
     }
 
     public ClientResponsePacket get(ClientRequestPacket requestPacket) {
-        ClientResponsePacket response = null;
+        ClientResponsePacket[] response = new ClientResponsePacket[3];
         try {
-            Socket socket = new Socket(getIpAddress(requestPacket.getKey()), ProjectConstants.MN_LISTEN_PORT);
-            PacketTransfer.sendRequest(requestPacket, socket);
-            response = PacketTransfer.recv_response(socket);
+            String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
+
+            for (int i = 0; i < 3; i++) {
+                Socket socket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                PacketTransfer.sendRequest(requestPacket, socket);
+                response[i] = PacketTransfer.recv_response(socket);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return response;
+        int failureCount = 0;
+        ClientResponsePacket successPacket = null;
+        ClientResponsePacket failurePacket = null;
+        for (ClientResponsePacket responsePacket : response) {
+            if (responsePacket.getResponse_code() == ProjectConstants.FAILURE) {
+                failurePacket = responsePacket;
+                failureCount++;
+            } else {
+                successPacket = responsePacket;
+            }
+        }
+
+        //TODO: Ask out of sync ones to update
+        if (failureCount < 3)
+            return successPacket;
+        else
+            return failurePacket;
     }
 }

@@ -3,9 +3,7 @@ package kv_requestCoordinator;
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
 import kv_utility.PacketTransfer;
-import kv_utility.ProjectConstants;
 
-import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -15,24 +13,19 @@ import java.net.Socket;
 public class MemNodeCommunication implements Runnable {
     private int threadId;
     private ClientRequestPacket requestPacket;
-    private String nodeIpAddress;
     private ClientResponsePacket[] response;
+    private Socket socket;
 
-    public MemNodeCommunication(String nodeIpAddress, int threadId, ClientRequestPacket requestPacket, ClientResponsePacket[] response) {
+    public MemNodeCommunication(Socket socket, int threadId, ClientRequestPacket requestPacket, ClientResponsePacket[] response) {
+        this.socket = socket;
         this.threadId = threadId;
         this.requestPacket = requestPacket;
-        this.nodeIpAddress = nodeIpAddress;
         this.response = response;
     }
 
     @Override
     public void run() {
-        try {
-            Socket socket = new Socket(this.nodeIpAddress, ProjectConstants.MN_LISTEN_PORT);
-            PacketTransfer.sendRequest(requestPacket, socket);
-            response[threadId] = PacketTransfer.recv_response(socket);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PacketTransfer.sendRequest(requestPacket, socket);
+        response[threadId] = PacketTransfer.recv_response(socket);
     }
 }

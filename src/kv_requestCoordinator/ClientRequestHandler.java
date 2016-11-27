@@ -27,7 +27,6 @@ public class ClientRequestHandler implements Runnable {
 
     @Override
     public void run() {
-
         try {
             clientInputStream = new ObjectInputStream(clientSocket.getInputStream());
             reqPacket = (ClientRequestPacket) clientInputStream.readObject();
@@ -52,17 +51,16 @@ public class ClientRequestHandler implements Runnable {
 
     public void handle_command(ClientRequestPacket reqPacket) {
         ClientResponsePacket resPacket = null;
-
         switch (reqPacket.getCommand()) {
             case ProjectConstants.REGISTER:
                 //TODO
                 break;
             case ProjectConstants.GET:
-                resPacket = rc.get(reqPacket.getKey());
+                resPacket = rc.get(reqPacket);
                 break;
 
             case ProjectConstants.PUT:
-                resPacket = rc.put(reqPacket.getKey(), reqPacket.getValue());
+                resPacket = rc.put(reqPacket);
                 break;
         }
         send_response(resPacket);
@@ -70,10 +68,10 @@ public class ClientRequestHandler implements Runnable {
 
     public void send_response(ClientResponsePacket res_packet) {
         try {
-            System.out.println("Sending the Response with code : " + res_packet.response_code);
-            oos = new ObjectOutputStream(client_socket.getOutputStream());
-            oos.writeObject(res_packet);
-            oos.flush();
+            System.out.println("Sending the Response with code : " + res_packet.getResponse_code());
+            clientOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+            clientOutputStream.writeObject(res_packet);
+            clientOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

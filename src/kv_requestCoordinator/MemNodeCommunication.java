@@ -12,7 +12,7 @@ import java.net.Socket;
  * Created by gmeneze on 11/27/16.
  */
 
-public class MemNodeCommunication extends implements Runnable {
+public class MemNodeCommunication implements Runnable {
     private int threadId;
     private ClientRequestPacket requestPacket;
     private String nodeIpAddress;

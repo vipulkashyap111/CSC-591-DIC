@@ -87,6 +87,9 @@ public class RequestCoordinator {
         ClientResponsePacket successPacket = null;
         ClientResponsePacket failurePacket = null;
         for (ClientResponsePacket responsePacket : response) {
+            if (responsePacket == null)
+                throw new RuntimeException("Response not recieved in one minute");
+
             if (responsePacket.getResponse_code() == ProjectConstants.FAILURE) {
                 failurePacket = responsePacket;
                 failureCount++;

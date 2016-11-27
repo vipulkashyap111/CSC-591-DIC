@@ -2,6 +2,7 @@ package kv_requestCoordinator;
 
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
+import kv_utility.ProjectConstants;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -52,9 +53,12 @@ public class ClientRequestHandler implements Runnable {
         String[] arg;
 
         switch (reqPacket.getCommand()) {
-            case Pro
-        }
+            case ProjectConstants.REGISTER:
 
+            case ProjectConstants.GET:
+
+            case ProjectConstants.PUT:
+        }
     }
 
 }

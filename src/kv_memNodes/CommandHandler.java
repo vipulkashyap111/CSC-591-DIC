@@ -1,61 +1,48 @@
 package kv_memNodes;
 
 import kv_utility.ClientRequestPacket;
+import kv_utility.ClientResponsePacket;
 import kv_utility.ProjectConstants;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.net.Socket;
+import kv_utility.ValueDetail;
 
 /**
  * Created by abhishek on 11/26/16.
  * Class responsible for handling command request from Request Co-Ordinator
  *
  */
-public class CommandHandler implements Runnable
+public class CommandHandler
 {
-    private Socket req_socket = null;
-    private ObjectInputStream ois = null;
-    private ClientRequestPacket req_packet = null;
-
-    public CommandHandler(Socket req)
+    public static ClientResponsePacket handleGet(ClientRequestPacket req_packet)
     {
-        this.req_socket = req;
+        ClientResponsePacket res_packet = new ClientResponsePacket();
+        ValueDetail val = MemNodeProc.getData_store().get(req_packet.getKey());
+        if (val == null) {
+            res_packet.setMessage(ProjectConstants.MESG_KNF);
+            res_packet.setResponse_code(ProjectConstants.KNF);
+        } else {
+            res_packet.setMessage(ProjectConstants.MESG_KF);
+            res_packet.setResponse_code(ProjectConstants.SUCCESS);
+            res_packet.setVal(val);
+            /* Update the time stamp */
+            val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
+        }
+        return res_packet;
     }
 
-    @Override
-    public void run() {
-        try {
-            ois = new ObjectInputStream(req_socket.getInputStream());
-            req_packet = (ClientRequestPacket) ois.readObject();
+    public static ClientResponsePacket handlePut(ClientRequestPacket req_packet) {
+        ClientResponsePacket res_packet = new ClientResponsePacket();
+        ValueDetail val = new ValueDetail();
+        val.setValue(req_packet.getVal().getValue());
+        val.setHashed_value(req_packet.getVal().getHashed_value());
+        val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
 
-            if (req_packet == null) {
-                System.out.println("Request was not properly recieved!");
-                return;
-            }
-            handle_request(req_packet);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                ois.close();
-                req_socket.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+        MemNodeProc.getData_store().put(req_packet.getKey(), val);
 
-    public void handle_request(ClientRequestPacket req_packet) {
-        switch (req_packet.getCommand()) {
-            case ProjectConstants.GET:
-                break;
-            case ProjectConstants.PUT:
-                break;
-            case ProjectConstants.:
-                break;
-        }
+        /* Add to the bucket as per the hash */
+        MemNodeProc.getBucket_map().add(req_packet.getVal().getHashed_value(), req_packet.getKey(), val);
+
+        res_packet.setResponse_code(ProjectConstants.SUCCESS);
+        res_packet.setMessage(ProjectConstants.SUCCESS_PUT);
+        return res_packet;
     }
 }

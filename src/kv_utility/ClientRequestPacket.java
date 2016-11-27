@@ -10,8 +10,9 @@ public class ClientRequestPacket implements Serializable {
     private String clientReqId;
     private String[] arguments;
     private boolean replicate_ind;
-    private String key;
-    private String value;
+    private String key = null;
+    private ValueDetail val = new ValueDetail();
+    private String ip_address = null;
 
     public int getCommand() {
         return command;
@@ -45,19 +46,27 @@ public class ClientRequestPacket implements Serializable {
         this.replicate_ind = replicate_ind;
     }
 
+    public ValueDetail getVal() {
+        return val;
+    }
+
+    public void setVal(ValueDetail val) {
+        this.val = val;
+    }
+
+    public String getIp_address() {
+        return ip_address;
+    }
+
+    public void setIp_address(String ip_address) {
+        this.ip_address = ip_address;
+    }
+
     public String getKey() {
         return key;
     }
 
     public void setKey(String key) {
         this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 }

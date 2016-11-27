@@ -11,6 +11,7 @@ public class ProjectConstants {
     public static final int NUM_OF_WORKERS = 20;
     public static final int ONE = 1;
     public static final int ZERO = 0;
+    public static final int THREE = 3;
 
     /* Return Status */
     public static final int SUCCESS = 0;

@@ -3,20 +3,22 @@ package kv_requestCoordinator;
 import com.google.common.hash.Hashing;
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
-import kv_utility.PacketTransfer;
 import kv_utility.ProjectConstants;
 
-import java.io.IOException;
-import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by gmeneze on 11/26/16.
  */
 public class RequestCoordinator {
     Ring ring;
+    private static ExecutorService workers;
 
     public RequestCoordinator() {
         ring = new Ring();
+        workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
     }
 
     public String[] getIpAddresses(String key) {
@@ -26,15 +28,17 @@ public class RequestCoordinator {
 
     public ClientResponsePacket put(ClientRequestPacket requestPacket) {
         ClientResponsePacket[] response = new ClientResponsePacket[3];
-        try {
-            String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
+        String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
 
-            for (int i = 0; i < 3; i++) {
-                Socket socket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
-                PacketTransfer.sendRequest(requestPacket, socket);
-                response[i] = PacketTransfer.recv_response(socket);
-            }
-        } catch (IOException e) {
+        for (int i = 0; i < 3; i++) {
+            MemNodeCommunication communicate = new MemNodeCommunication(threeIpAddresses[i], i, requestPacket, response);
+            workers.execute(communicate);
+        }
+
+        try {
+            workers.shutdown();
+            workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -42,6 +46,9 @@ public class RequestCoordinator {
         ClientResponsePacket successPacket = null;
         ClientResponsePacket failurePacket = null;
         for (ClientResponsePacket responsePacket : response) {
+            if (responsePacket == null)
+                throw new RuntimeException("Response not recieved in one minute");
+
             if (responsePacket.getResponse_code() == ProjectConstants.FAILURE) {
                 failurePacket = responsePacket;
                 failureCount++;
@@ -62,15 +69,17 @@ public class RequestCoordinator {
 
     public ClientResponsePacket get(ClientRequestPacket requestPacket) {
         ClientResponsePacket[] response = new ClientResponsePacket[3];
-        try {
-            String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
+        String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
 
-            for (int i = 0; i < 3; i++) {
-                Socket socket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
-                PacketTransfer.sendRequest(requestPacket, socket);
-                response[i] = PacketTransfer.recv_response(socket);
-            }
-        } catch (IOException e) {
+        for (int i = 0; i < 3; i++) {
+            MemNodeCommunication communicate = new MemNodeCommunication(threeIpAddresses[i], i, requestPacket, response);
+            workers.execute(communicate);
+        }
+
+        try {
+            workers.shutdown();
+            workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

@@ -17,4 +17,5 @@ public class ProjectConstants {
     /* Command list */
     public static final int PUT = 0;
     public static final int GET = 1;
+    public static final int REGISTER = 2;
 }

@@ -25,6 +25,7 @@ public class ProjectConstants {
     public static final int ADD_MEM_NODES = 2;
     public static final int GET_RC = 3;
     public static final int GET_RING = 4;
+    public static final int ADD_RC_NODES = 5;
 
     /* Message Constants */
     public static final String MESG_KNF = "Unnable to fetch the key";
@@ -34,6 +35,5 @@ public class ProjectConstants {
     public static final String MESG_KF = "Fetched the key from Data Store";
     public static final String SUCCESS_PUT = "Successfully Stored the Value";
     public static final String MESG_ADDED_RC = "Successfully added the Request Co-Ordinator";
-    public static final int REGISTER = 2;
     public static final int MAX_NUM_NODES = 100;
 }

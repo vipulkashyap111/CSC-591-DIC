@@ -1,6 +1,7 @@
 package kv_requestCoordinator;
 
 import com.google.common.hash.Hashing;
+import kv_utility.ClientResponsePacket;
 import kv_utility.ProjectConstants;
 
 /**
@@ -18,15 +19,19 @@ public class RequestCoordinator {
         return ring.getNodeIpForKey(keyValue);
     }
 
-    public void put(String key, Object value) {
+    public ClientResponsePacket put(String key, Object value) {
         getIpAddress(key);
+        ClientResponsePacket response =
+        return response;
     }
 
     public int getHash(String key) {
         return Hashing.consistentHash(Hashing.md5().hashUnencodedChars(key), ProjectConstants.MAX_NUM_NODES);
     }
 
-    public Object get(String key) {
+    public ClientResponsePacket get(String key) {
         getIpAddress(key);
+        ClientResponsePacket response =
+        return response;
     }
 }

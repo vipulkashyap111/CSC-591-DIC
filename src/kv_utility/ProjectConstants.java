@@ -18,4 +18,5 @@ public class ProjectConstants {
     public static final int PUT = 0;
     public static final int GET = 1;
     public static final int REGISTER = 2;
+    public static final int MAX_NUM_NODES = 100;
 }

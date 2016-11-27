@@ -17,8 +17,4 @@ public class ProjectConstants {
     /* Command list */
     public static final int PUT = 0;
     public static final int GET = 1;
-
-    /* CONSTANTS FOR TYPE OF CLIENT REQUESTS i.e. commands*/
-    public final static int GET = 11;
-    public final static int PUT = 12;
 }

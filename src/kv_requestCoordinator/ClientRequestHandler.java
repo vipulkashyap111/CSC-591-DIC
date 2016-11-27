@@ -1,6 +1,7 @@
 package kv_requestCoordinator;
 
 import kv_utility.ClientRequestPacket;
+import kv_utility.ClientResponsePacket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,15 +13,13 @@ import java.net.Socket;
  */
 public class ClientRequestHandler implements Runnable {
     private Socket clientSocket;
-    private String clientReqId;
     private ObjectInputStream clientInputStream;
     private ObjectOutputStream clientOutputStream;
-    private ClientRequestPacket req_packet;
+    private ClientRequestPacket reqPacket;
 
 
-    public ClientRequestHandler(Socket soc, String clientReqId) {
+    public ClientRequestHandler(Socket soc) {
         this.clientSocket = soc;
-        this.clientReqId = clientReqId;
     }
 
     @Override
@@ -28,23 +27,34 @@ public class ClientRequestHandler implements Runnable {
 
         try {
             clientInputStream = new ObjectInputStream(clientSocket.getInputStream());
-            req_packet = (ClientRequestPacket) clientInputStream.readObject();
+            reqPacket = (ClientRequestPacket) clientInputStream.readObject();
 
-            if (req_packet == null)
+            if (reqPacket == null)
                 System.out.println("Handle NULL case");
 
-            System.out.println("Request for ID : " + req_packet.getClientReqId());
-
-            handle_command(req_packet);
+            handle_command(reqPacket);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
+            try {
+                clientInputStream.close();
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public void handle_command(ClientRequestPacket reqPacket) {
+        ClientResponsePacket resPacket = null;
+        String[] arg;
+
+        switch (reqPacket.getCommand()) {
+            case Pro
         }
 
     }
-
 
 }

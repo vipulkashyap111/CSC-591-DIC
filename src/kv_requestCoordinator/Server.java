@@ -45,9 +45,15 @@ public class Server {
             setUpServer();
 
             while (ProjectGlobal.is_RC_on) {
-
-
+                currReq = new ClientRequestHandler(clientRequest.accept());
+                workers.execute(currReq);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            cleanUpServer();
         }
     }
 }

@@ -32,8 +32,8 @@ public class MemNodeProc {
         }
         String proxy_address = arg[ProjectConstants.ZERO];
         try {
-            if (notifyProxy(proxy_address)) {
-                System.out.println("");
+            if (!notifyProxy(proxy_address)) {
+                System.out.println("Unsucessfull attemp to communicate to the proxy...");
                 return;
             }
         } catch (IOException ex) {
@@ -76,13 +76,13 @@ public class MemNodeProc {
     /* Notify the proxy which will update the request co-ordinator to upadte the ring structure */
     public static boolean notifyProxy(String proxy_address) throws IOException {
         Socket proxy_connect = new Socket(proxy_address, ProjectConstants.PR_LISTEN_PORT);
-
         ClientRequestPacket req_packet = new ClientRequestPacket();
-        req_packet.setCommand(ProjectConstants.ADD_MEM_NODES);
+        req_packet.setCommand(ProjectConstants.GET_RING);
         req_packet.setIp_address(InetAddress.getLocalHost().getHostAddress());
         PacketTransfer.sendRequest(req_packet, proxy_connect);
         ClientResponsePacket res_packet = PacketTransfer.recv_response(proxy_connect);
-        return !(res_packet == null || res_packet.getResponse_code() != ProjectConstants.SUCCESS);
+        System.out.println("Got Response : " + res_packet.getResponse_code());
+        return (res_packet != null && res_packet.getResponse_code() == ProjectConstants.SUCCESS);
     }
 
     public static Date getUnixTimeGenerator() {

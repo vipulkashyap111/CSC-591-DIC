@@ -1,9 +1,11 @@
 package kv_utility;
 
+import java.io.Serializable;
+
 /**
  * Created by abhishek on 11/26/16.
  */
-public class ValueDetail {
+public class ValueDetail implements Serializable {
     private String value = null;
     private long unixTS = 0;
     private int hashed_value = 0;

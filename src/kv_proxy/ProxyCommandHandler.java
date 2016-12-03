@@ -3,6 +3,7 @@ package kv_proxy;
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
 import kv_utility.ProjectConstants;
+import kv_utility.RCDetail;
 
 import java.util.ArrayList;
 

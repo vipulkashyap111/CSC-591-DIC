@@ -81,7 +81,7 @@ public class MemNodeProc {
         req_packet.setIp_address(InetAddress.getLocalHost().getHostAddress());
         PacketTransfer.sendRequest(req_packet, proxy_connect);
         ClientResponsePacket res_packet = PacketTransfer.recv_response(proxy_connect);
-        System.out.println("Got Response : " + res_packet.getResponse_code());
+        System.out.println("Got Response : " + res_packet.getResponse_code() + res_packet.getRc_list().size());
         return (res_packet != null && res_packet.getResponse_code() == ProjectConstants.SUCCESS);
     }
 

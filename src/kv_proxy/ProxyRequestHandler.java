@@ -56,6 +56,9 @@ public class ProxyRequestHandler implements Runnable {
             case ProjectConstants.GET_RING:
                 res_packet = ProxyCommandHandler.handleGetRing(req_packet);
                 break;
+            case ProjectConstants.ADD_RC_NODES:
+                res_packet = ProxyCommandHandler.handleAddRC(req_packet);
+                break;
             default:
                 System.out.println("Wrong Command recieved :" + req_packet.getCommand());
                 break;

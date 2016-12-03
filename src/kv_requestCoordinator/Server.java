@@ -1,9 +1,6 @@
 package kv_requestCoordinator;
 
-import kv_utility.ClientRequestPacket;
-import kv_utility.PacketTransfer;
-import kv_utility.ProjectConstants;
-import kv_utility.ProjectGlobal;
+import kv_utility.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -83,7 +80,8 @@ public class Server {
         }
 
         try {
-            proxySocket = new Socket(proxyIpAddress, ProjectConstants.MN_LISTEN_PORT);
+            System.out.println("Proxy Ip:" + proxyIpAddress);
+            proxySocket = new Socket(proxyIpAddress, ProjectConstants.PR_LISTEN_PORT);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -92,7 +90,8 @@ public class Server {
         requestPacket.setCommand(ProjectConstants.ADD_RC_NODES);
         requestPacket.setIp_address(host_address.getHostAddress());
         PacketTransfer.sendRequest(requestPacket, proxySocket);
-
+        ClientResponsePacket res_packet = PacketTransfer.recv_response(proxySocket);
+        System.out.println("Response Recieved : " + res_packet.getResponse_code());
         startServer();
     }
 }

@@ -83,7 +83,7 @@ public class Server {
         }
 
         try {
-            proxySocket = new Socket(proxyIpAddress, ProjectConstants.MN_LISTEN_PORT);
+            proxySocket = new Socket(proxyIpAddress, ProjectConstants.PR_LISTEN_PORT);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);

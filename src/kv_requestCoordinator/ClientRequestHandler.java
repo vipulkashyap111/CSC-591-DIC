@@ -53,13 +53,25 @@ public class ClientRequestHandler implements Runnable {
         ClientResponsePacket resPacket = null;
         switch (reqPacket.getCommand()) {
             case ProjectConstants.GET:
+                System.out.println("recieved GET packet");
                 resPacket = rc.get(reqPacket);
                 break;
 
             case ProjectConstants.PUT:
+                System.out.println("recieved PUT packet");
                 resPacket = rc.put(reqPacket);
                 break;
+
+            case ProjectConstants.ADD_MEM_NODES:
+                System.out.println("recieved ADD_MEM_NODES packet");
+                resPacket = rc.addNode(reqPacket);
+                break;
+
+            default:
+                System.out.println("Invalid request to Request Co-ordinator");
+                System.exit(1);
         }
+        System.out.println("sending response Packet");
         send_response(resPacket);
     }
 

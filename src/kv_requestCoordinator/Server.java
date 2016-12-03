@@ -67,11 +67,6 @@ public class Server {
             System.exit(1);
         }
 
-        /* Guava Test Code */
-        RequestCoordinator rc = new RequestCoordinator();
-        System.out.println("running ring command" + rc.getHash("123434"));
-        /* Test complete */
-
         String proxyIpAddress = args[0];
         Socket proxySocket = null;
         ClientRequestPacket requestPacket = new ClientRequestPacket();

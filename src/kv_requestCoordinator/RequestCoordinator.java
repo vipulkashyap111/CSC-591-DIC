@@ -25,6 +25,14 @@ public class RequestCoordinator {
         workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
     }
 
+    public ClientResponsePacket addNode(ClientRequestPacket requestPacket) {
+        ClientResponsePacket responsePacket = new ClientResponsePacket();
+        ring.addNode(requestPacket.getIp_address());
+        responsePacket.setMessage("Added Node " + requestPacket.getIp_address() + " successfully");
+        responsePacket.setResponse_code(ProjectConstants.SUCCESS);
+        return responsePacket;
+    }
+
     public String[] getIpAddresses(String key) {
         int keyValue = getHash(key);
         return ring.getThreeNodeIpForKey(keyValue);
@@ -34,9 +42,10 @@ public class RequestCoordinator {
         ClientResponsePacket[] response = new ClientResponsePacket[3];
         String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
         Socket[] socket = new Socket[3];
-
+        System.out.println("PUT - 1");
         for (int i = 0; i < 3; i++) {
             try {
+                System.out.println("PUT - 1" + i);
                 socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
@@ -44,18 +53,19 @@ public class RequestCoordinator {
                 e.printStackTrace();
             }
         }
-
+        System.out.println("PUT - 2");
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        System.out.println("PUT - 3");
         int failureCount = 0;
         ClientResponsePacket successPacket = null;
         ClientResponsePacket failurePacket = null;
         for (ClientResponsePacket responsePacket : response) {
+            System.out.println("PUT - 3 inner");
             if (responsePacket == null)
                 throw new RuntimeException("Response not recieved in one minute");
 
@@ -66,7 +76,7 @@ public class RequestCoordinator {
                 successPacket = responsePacket;
             }
         }
-
+        System.out.println("PUT - 4");
         if (failureCount < 2)
             return successPacket;
         else

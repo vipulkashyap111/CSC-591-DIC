@@ -67,6 +67,18 @@ public class Server {
             System.exit(1);
         }
 
+        /*
+        RequestCoordinator rc = new RequestCoordinator();
+        ClientRequestPacket testRequestPacket = new ClientRequestPacket();
+        testRequestPacket.setIp_address("2323343");
+        System.out.println("ip address is: " + testRequestPacket.getIp_address());
+        rc.addNode(testRequestPacket);
+        testRequestPacket.setIp_address("1232434");
+        rc.addNode(testRequestPacket);
+        testRequestPacket.setIp_address("6678788");
+        rc.addNode(testRequestPacket);
+        */
+
         String proxyIpAddress = args[0];
         Socket proxySocket = null;
         ClientRequestPacket requestPacket = new ClientRequestPacket();

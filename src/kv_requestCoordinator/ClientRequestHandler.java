@@ -18,7 +18,7 @@ public class ClientRequestHandler implements Runnable {
     private ObjectOutputStream clientOutputStream;
     private ClientRequestPacket reqPacket;
     private RequestCoordinator rc;
-
+    private static ClientRequestHandler instance = null;
 
     public ClientRequestHandler(Socket soc) {
         this.clientSocket = soc;

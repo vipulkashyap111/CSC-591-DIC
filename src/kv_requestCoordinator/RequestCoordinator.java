@@ -21,12 +21,15 @@ public class RequestCoordinator {
     private static ExecutorService workers;
 
     public RequestCoordinator() {
-        ring = new Ring();
+        ring = Ring.getInstance();
         workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
     }
 
     public ClientResponsePacket addNode(ClientRequestPacket requestPacket) {
+        System.out.println("===RC object is: " + this.toString());
+        System.out.println("===Ring object is: " + ring.toString());
         ClientResponsePacket responsePacket = new ClientResponsePacket();
+        System.out.println("request packet ip address is: " + requestPacket.getIp_address());
         ring.addNode(requestPacket.getIp_address());
         responsePacket.setMessage("Added Node " + requestPacket.getIp_address() + " successfully");
         responsePacket.setResponse_code(ProjectConstants.SUCCESS);
@@ -39,6 +42,10 @@ public class RequestCoordinator {
     }
 
     public ClientResponsePacket put(ClientRequestPacket requestPacket) {
+        //set unix time and hashvalue of key in request Packet
+        requestPacket.getVal().setUnixTS(System.nanoTime());
+        requestPacket.getVal().setHashed_value(getHash(requestPacket.getKey()));
+
         ClientResponsePacket[] response = new ClientResponsePacket[3];
         String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
         Socket[] socket = new Socket[3];
@@ -57,9 +64,15 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+            socket[0].close();
+            socket[1].close();
+            socket[2].close();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         System.out.println("PUT - 3");
         int failureCount = 0;
         ClientResponsePacket successPacket = null;
@@ -77,10 +90,12 @@ public class RequestCoordinator {
             }
         }
         System.out.println("PUT - 4");
-        if (failureCount < 2)
+        if (failureCount < 2) {
             return successPacket;
-        else
+        }
+        else {
             return failurePacket;
+        }
     }
 
     public int getHash(String key) {
@@ -105,7 +120,12 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+            socket[0].close();
+            socket[1].close();
+            socket[2].close();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

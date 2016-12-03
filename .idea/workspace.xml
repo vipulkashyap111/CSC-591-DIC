@@ -10,8 +10,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/ClientRequestHandler.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/ClientRequestHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/RequestCoordinator.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/RequestCoordinator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/Ring.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/Ring.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/Server.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_requestCoordinator/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_requestCoordinator/ClientRequestHandler.java" afterPath="$PROJECT_DIR$/src/kv_requestCoordinator/ClientRequestHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_requestCoordinator/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/kv_requestCoordinator/META-INF/MANIFEST.MF" />
     </list>
     <ignored path="DistKVStore.iws" />
@@ -37,8 +37,8 @@
       <file leaf-file-name="ClientRequestHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/kv_requestCoordinator/ClientRequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+            <state relative-caret-position="317">
+              <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -896,7 +896,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480792547897</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added code for serial version id">
+      <created>1480792574502</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1480792574502</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -976,14 +983,16 @@
     <MESSAGE value="Request Packet field for KVType." />
     <MESSAGE value="Added code base for proxy and dummy client" />
     <MESSAGE value="Fix for issue not serializable" />
-    <MESSAGE value="Added code for serial version id" />
     <MESSAGE value="Added Code to request coordinator to handle addition Memory Node" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Code to request coordinator to handle addition Memory Node" />
+    <MESSAGE value="Added code for serial version id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added code for serial version id" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1271,7 +1280,7 @@
         <state relative-caret-position="294">
           <caret line="59" column="54" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1437,8 +1446,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_requestCoordinator/ClientRequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+        <state relative-caret-position="317">
+          <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
           <folding />
         </state>
       </provider>

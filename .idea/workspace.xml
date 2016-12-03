@@ -6,22 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Fix for issue not serializable">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Client_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/kv_utility/RCDetail.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/kv_proxy/RCDetail.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/kv_proxy/RCList.java" afterPath="$PROJECT_DIR$/src/kv_utility/RCList.java" />
+    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Added code for serial version id">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/META-RC/META-INF/MANIFEST.MF" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_proxy/ProxyCommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_proxy/ProxyCommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_proxy/ProxyRequestHandler.java" afterPath="$PROJECT_DIR$/src/kv_proxy/ProxyRequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_proxy/ProxyServer.java" afterPath="$PROJECT_DIR$/src/kv_proxy/ProxyServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_requestCoordinator/Server.java" afterPath="$PROJECT_DIR$/src/kv_requestCoordinator/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" afterPath="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java" afterPath="$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/MakeRequest.java" afterPath="$PROJECT_DIR$/src/test/MakeRequest.java" />
     </list>
     <ignored path="DistKVStore.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/kv_requestCoordinator/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="1130">
+              <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
+              <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1096#1097#0" expanded="true" />
@@ -147,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientRequestPacket.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientRequestPacket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+            <state relative-caret-position="119">
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -207,12 +195,12 @@
         <option value="$PROJECT_DIR$/src/kv_utility/ProjectConstants.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ValueDetail.java" />
         <option value="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
-        <option value="$PROJECT_DIR$/src/kv_requestCoordinator/Server.java" />
         <option value="$PROJECT_DIR$/src/kv_proxy/ProxyRequestHandler.java" />
         <option value="$PROJECT_DIR$/src/kv_proxy/RCDetail.java" />
         <option value="$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java" />
-        <option value="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
         <option value="$PROJECT_DIR$/src/test/MakeRequest.java" />
+        <option value="$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java" />
+        <option value="$PROJECT_DIR$/src/kv_requestCoordinator/Server.java" />
       </list>
     </option>
   </component>
@@ -420,6 +408,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -936,7 +925,7 @@
       <updated>1480188430543</updated>
       <workItem from="1480188438007" duration="34612000" />
       <workItem from="1480268551138" duration="31986000" />
-      <workItem from="1480782463570" duration="1676000" />
+      <workItem from="1480782463570" duration="2072000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Packages">
       <created>1480193145476</created>
@@ -1085,11 +1074,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480298183072</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added code for serial version id">
+      <created>1480784836052</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1480784836052</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68274000" />
+    <option name="totallyTimeSpent" value="68670000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -1099,7 +1095,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.50883937" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884902" sideWeight="0.50883937" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.49730977" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.49116063" order="1" side_tool="false" content_ui="tabs" />
@@ -1165,7 +1161,8 @@
     <MESSAGE value="Request Packet field for KVType." />
     <MESSAGE value="Added code base for proxy and dummy client" />
     <MESSAGE value="Fix for issue not serializable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix for issue not serializable" />
+    <MESSAGE value="Added code for serial version id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added code for serial version id" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1409,6 +1406,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="e#347#348#0" expanded="false" />
+            <element signature="e#379#380#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1510,13 +1511,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientResponsePacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1096#1097#0" expanded="true" />
@@ -1529,16 +1531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="36" column="82" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/kv_requestCoordinator/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1593,9 +1585,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_utility/ClientRequestPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+        <state relative-caret-position="119">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kv_requestCoordinator/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1130">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

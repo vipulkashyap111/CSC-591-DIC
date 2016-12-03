@@ -80,7 +80,6 @@ public class Server {
         }
 
         try {
-            System.out.println("Proxy Ip:" + proxyIpAddress);
             proxySocket = new Socket(proxyIpAddress, ProjectConstants.PR_LISTEN_PORT);
         } catch (IOException e) {
             e.printStackTrace();

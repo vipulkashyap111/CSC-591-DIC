@@ -67,17 +67,32 @@ public class Server {
             System.exit(1);
         }
 
+        /* Test Code */
         /*
         RequestCoordinator rc = new RequestCoordinator();
         ClientRequestPacket testRequestPacket = new ClientRequestPacket();
-        testRequestPacket.setIp_address("2323343");
+        testRequestPacket.setIp_address("0");
         System.out.println("ip address is: " + testRequestPacket.getIp_address());
         rc.addNode(testRequestPacket);
-        testRequestPacket.setIp_address("1232434");
+        testRequestPacket.setIp_address("50");
         rc.addNode(testRequestPacket);
-        testRequestPacket.setIp_address("6678788");
+        testRequestPacket.setIp_address("25");
         rc.addNode(testRequestPacket);
+        testRequestPacket.setIp_address("75");
+        rc.addNode(testRequestPacket);
+        testRequestPacket.setIp_address("12");
+        rc.addNode(testRequestPacket);
+        testRequestPacket.setIp_address("37");
+        ClientResponsePacket responsePacket = rc.addNode(testRequestPacket);
+
+        System.out.println(" syncips size : " + responsePacket.getMemNodeSyncHelper().syncIps.size());
+
+        for(MemNodeSyncDetails details : responsePacket.getMemNodeSyncHelper().syncIps)
+        {
+            System.out.println("node Ip : " + details.getIp_Address() + " start range: " + details.getStart_range() + " end range: " + details.getEnd_range());
+        }
         */
+        /* Test Code ends */
 
         String proxyIpAddress = args[0];
         Socket proxySocket = null;

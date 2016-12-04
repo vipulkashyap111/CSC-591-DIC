@@ -67,7 +67,11 @@ public class DoublyLinkedList {
             newNode.setPrev(addHelper);
             newNode.setNext(addHelper.getNext());
             addHelper.setNext(newNode);
+            newNode.getNext().setPrev(newNode);
             addHelper = newNode.getNext();
+
+            System.out.println(" newNode is: " + newNode.getValue() + " prevNode is: " + newNode.getPrev().getValue() + " nextNode is: " + newNode.getNext().getValue());
+
             return val;
         }
     }
@@ -78,14 +82,32 @@ public class DoublyLinkedList {
         while (current.getNext() != null) {
             if (current.getValue() == value) {
                 //go back n steps
-                for (int i = 0; i <= n; i++) {
+                for (int i = 0; i < n; i++) {
+                    System.out.println("current is: " + current.getValue());
+                    System.out.println(" **** prev value is: " + current.getPrev().getValue() + " prev prev is: " + current.getPrev().getPrev().getValue());
                     current = current.getPrev();
                 }
-
                 return current.getValue();
             }
+            current = current.getNext();
         }
-
         return null;
     }
+
+    public Integer getNextValue(int value, int n) {
+        DLLNode current = top;
+
+        while (current.getNext() != null) {
+            if (current.getValue() == value) {
+                //go back n steps
+                for (int i = 0; i < n; i++) {
+                    current = current.getNext();
+                }
+                return current.getValue();
+            }
+            current = current.getNext();
+        }
+        return null;
+    }
+
 }

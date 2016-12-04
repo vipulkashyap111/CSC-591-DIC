@@ -8,7 +8,7 @@ import kv_utility.*;
 public class ClientRequestHandler {
 	public String handle(ClientRequestObject obj){
 		try {
-            Socket s = new Socket("52.87.188.58", ProjectConstants.PR_LISTEN_PORT);
+            Socket s = new Socket("152.46.17.199", ProjectConstants.PR_LISTEN_PORT);
             ClientRequestPacket req_packet = new ClientRequestPacket();
             ValueDetail val = new ValueDetail();
             val.setValue(obj.getValue());

@@ -32,6 +32,35 @@ public class Ring {
         System.out.println("added Node Ip: " + nodeIp + " at Node id: " + nodeId);
     }
 
+    public String[] getPrevTwoNodes(int keyValue) {
+        //System.out.println("In getPrevTwoNodes - 1");
+        String[] prevTwo = new String[2];
+        int j = 0;
+        //System.out.println("The number of registered memory nodes : " + nodeIdToIp.size());
+
+        for (int i = keyValue; i >= -100; i--) {
+            int key = i < 0 ? (-1 * i) : i;
+            if (nodeIdToIp.containsKey(key % 100)) {
+                prevTwo[j] = nodeIdToIp.get(key % 100);
+                j++;
+
+                if (j == nodeIdToIp.size() || j == 2)
+                    break;
+            }
+        }
+        return prevTwo;
+    }
+
+    public String[] getNextTwoNodes(int keyValue) {
+        String[] nextTwo = new String[2];
+        String[] nextThree = getThreeNodeIpForKey(keyValue);
+
+        nextTwo[0] = nextThree[0];
+        nextTwo[1] = nextThree[1];
+
+        return nextTwo;
+    }
+
     public String[] getThreeNodeIpForKey(int keyValue) {
         System.out.println("In getThreeNodeIpForKey - 1");
         String[] threeNodeIp = new String[3];

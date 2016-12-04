@@ -67,6 +67,9 @@ public class ClientRequestHandler implements Runnable {
                 resPacket = rc.addNode(reqPacket);
                 break;
 
+            case ProjectConstants.SYNC_MEM_NODE:
+                System.out.println("recieved SYNC_MEM_NODE packet");
+                resPacket = rc.syncMemNode(reqPacket);
             default:
                 resPacket.setMessage("Invalid request to Request Co-ordinator");
                 resPacket.setResponse_code(ProjectConstants.FAILURE);

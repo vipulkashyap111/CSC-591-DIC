@@ -14,6 +14,15 @@ public class ClientResponsePacket implements Serializable {
     private ValueDetail val = new ValueDetail();
     private RCDetail rc = null;
     private ArrayList<RCDetail> rc_list = null;
+    private MemNodeSyncHelper memNodeSyncHelper = null;
+
+    public MemNodeSyncHelper getMemNodeSyncHelper() {
+        return memNodeSyncHelper;
+    }
+
+    public void setMemNodeSyncHelper(MemNodeSyncHelper memNodeSyncHelper) {
+        this.memNodeSyncHelper = memNodeSyncHelper;
+    }
 
     public String getMessage() {
         return message;

@@ -25,6 +25,14 @@ public class RequestCoordinator {
         workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
     }
 
+    public ClientResponsePacket syncMemNode(ClientRequestPacket requestPacket) {
+
+        String[] prevTwoNodes = ring.getPrevTwoNodes(getHash(requestPacket.));
+        String[] nextTwoNodes = ring.getNextTwoNodes();
+
+
+    }
+
     public ClientResponsePacket addNode(ClientRequestPacket requestPacket) {
         System.out.println("===RC object is: " + this.toString());
         System.out.println("===Ring object is: " + ring.toString());

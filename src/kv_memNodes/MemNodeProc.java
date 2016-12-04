@@ -107,9 +107,11 @@ public class MemNodeProc {
     public static boolean syncUp(ClientResponsePacket res_packet)
     {
         /* Start the syncing request */
-        ArrayList<> next_nodes = null;
-
-
+        MemNodeSyncHelper sync_nodes_list = res_packet.getMemNodeSyncHelper();
+        ClientRequestPacket req_packet = new ClientRequestPacket();
+        for(sync_nodes_list.)
+        req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
+        req_packet.setStart_range(res_packet);
     }
 
     public static Date getUnixTimeGenerator() {

@@ -57,6 +57,9 @@ public class RequestHandle implements Runnable {
             case ProjectConstants.PUT:
                 res_packet = CommandHandler.handlePut(req_packet);
                 break;
+            case ProjectConstants.SYNC_MEM_NODE:
+                res_packet = CommandHandler.handleSync(req_packet);
+                break;
             default:
                 System.out.println("Wrong Command recieved :" + req_packet.getCommand());
                 break;

@@ -5,6 +5,8 @@ import kv_utility.ClientResponsePacket;
 import kv_utility.ProjectConstants;
 import kv_utility.ValueDetail;
 
+import java.util.HashMap;
+
 /**
  * Created by abhishek on 11/26/16.
  * Class responsible for handling command request from Request Co-Ordinator
@@ -32,7 +34,8 @@ public class CommandHandler
         return res_packet;
     }
 
-    public static ClientResponsePacket handlePut(ClientRequestPacket req_packet) {
+    public static ClientResponsePacket handlePut(ClientRequestPacket req_packet)
+    {
         ClientResponsePacket res_packet = new ClientResponsePacket();
         ValueDetail val = new ValueDetail();
         val.setValue(req_packet.getVal().getValue());
@@ -53,6 +56,17 @@ public class CommandHandler
 
         res_packet.setResponse_code(ProjectConstants.SUCCESS);
         res_packet.setMessage(ProjectConstants.SUCCESS_PUT);
+        return res_packet;
+    }
+
+    public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
+    {
+        HashMap<String,ValueDetail> total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range());
+
+        /* Send this list back to new node */
+        ClientResponsePacket res_packet = new ClientResponsePacket();
+        res_packet.setResponse_code(ProjectConstants.SUCCESS);
+        res_packet.setSync_data(total_data);
         return res_packet;
     }
 }

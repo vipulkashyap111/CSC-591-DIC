@@ -1,6 +1,7 @@
 package kv_utility;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -22,5 +23,18 @@ public class HashedBucketMap {
             temp.put(key, val);
             bucket.put(hash_key, temp);
         }
+    }
+
+    public HashMap<String,ValueDetail> getDSListFromBucket(int start,int end)
+    {
+        HashMap<String,ValueDetail> res = new HashMap<>();
+        HashMap<String,ValueDetail> hm = new HashMap<>();
+        for(int i = start;i <= end;i++)
+        {
+            if(!bucket.containsKey(i))
+                continue;
+            res.putAll(bucket.get(i));
+        }
+        return res;
     }
 }

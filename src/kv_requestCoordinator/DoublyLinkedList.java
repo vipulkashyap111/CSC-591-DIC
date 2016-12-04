@@ -71,4 +71,21 @@ public class DoublyLinkedList {
             return val;
         }
     }
+
+    public Integer getPrevValue(int value, int n) {
+        DLLNode current = top;
+
+        while (current.getNext() != null) {
+            if (current.getValue() == value) {
+                //go back n steps
+                for (int i = 0; i <= n; i++) {
+                    current = current.getPrev();
+                }
+
+                return current.getValue();
+            }
+        }
+
+        return null;
+    }
 }

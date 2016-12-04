@@ -25,20 +25,12 @@ public class RequestCoordinator {
         workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
     }
 
-    public ClientResponsePacket syncMemNode(ClientRequestPacket requestPacket) {
-
-        String[] prevTwoNodes = ring.getPrevTwoNodes(getHash(requestPacket.));
-        String[] nextTwoNodes = ring.getNextTwoNodes();
-
-
-    }
-
     public ClientResponsePacket addNode(ClientRequestPacket requestPacket) {
         System.out.println("===RC object is: " + this.toString());
         System.out.println("===Ring object is: " + ring.toString());
         ClientResponsePacket responsePacket = new ClientResponsePacket();
         System.out.println("request packet ip address is: " + requestPacket.getIp_address());
-        ring.addNode(requestPacket.getIp_address());
+        ring.addNode(requestPacket.getIp_address(), responsePacket);
         responsePacket.setMessage("Added Node " + requestPacket.getIp_address() + " successfully");
         responsePacket.setResponse_code(ProjectConstants.SUCCESS);
         return responsePacket;

@@ -22,6 +22,7 @@ public class ProjectConstants {
     public static final int PUT = 0;
     public static final int GET = 1;
     public static final int ADD_MEM_NODES = 2;
+    public static final int SYNC_MEM_NODE = 10;
     public static final int GET_RC = 3;
     public static final int GET_RING = 4;
     public static final int ADD_RC_NODES = 5;

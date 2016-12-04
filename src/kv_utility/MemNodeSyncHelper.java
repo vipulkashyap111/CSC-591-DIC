@@ -6,11 +6,11 @@ import java.util.ArrayList;
  * Created by gmeneze on 12/3/16.
  */
 public class MemNodeSyncHelper {
-    private ArrayList<String> prevIps;
-    private ArrayList<String> nextIps;
+    public ArrayList<MemNodeDetails> prevIps;
+    public ArrayList<MemNodeDetails> nextIps;
 
     public MemNodeSyncHelper() {
-        prevIps = new ArrayList<String>();
-        nextIps = new ArrayList<String>();
+        prevIps = new ArrayList<MemNodeDetails>();
+        nextIps = new ArrayList<MemNodeDetails>();
     }
 }

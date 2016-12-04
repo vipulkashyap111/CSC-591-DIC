@@ -104,14 +104,18 @@ public class MemNodeProc {
         return res_packet.getResponse_code() == ProjectConstants.SUCCESS;
     }
 
-    public static boolean syncUp(ClientResponsePacket res_packet)
+    public static boolean syncUp(ClientResponsePacket res_packet)throws IOException
     {
         /* Start the syncing request */
         MemNodeSyncHelper sync_nodes_list = res_packet.getMemNodeSyncHelper();
         ClientRequestPacket req_packet = new ClientRequestPacket();
-        for(sync_nodes_list.)
-        req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
-        req_packet.setStart_range(res_packet);
+        for(MemNodeDetails node : sync_nodes_list.nextIps)
+        {
+            req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
+            req_packet.setStart_range(node.getStart_range());
+            req_packet.setEnd_range(node.getEnd_range());
+            mem_conn = new Socket(node.getIp_Address(),ProjectConstants.MN_LISTEN_PORT);
+        }
     }
 
     public static Date getUnixTimeGenerator() {

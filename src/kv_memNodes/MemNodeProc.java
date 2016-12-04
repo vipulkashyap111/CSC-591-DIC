@@ -64,7 +64,6 @@ public class MemNodeProc {
     }
 
     public static void setUPMN() throws IOException {
-        host_address = InetAddress.getLocalHost();
         request_listerner = new ServerSocket(ProjectConstants.MN_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
         setData_store(new KeyValueHM());
@@ -75,6 +74,7 @@ public class MemNodeProc {
 
     /* Notify the proxy which will update the request co-ordinator to upadte the ring structure */
     public static boolean notifyProxy(String proxy_address) throws IOException {
+        host_address = InetAddress.getLocalHost();
         Socket proxy_connect = new Socket(proxy_address, ProjectConstants.PR_LISTEN_PORT);
         ClientRequestPacket req_packet = new ClientRequestPacket();
         req_packet.setCommand(ProjectConstants.GET_RING);
@@ -82,7 +82,24 @@ public class MemNodeProc {
         PacketTransfer.sendRequest(req_packet, proxy_connect);
         ClientResponsePacket res_packet = PacketTransfer.recv_response(proxy_connect);
         System.out.println("Got Response : " + res_packet.getResponse_code() + res_packet.getRc_list().size());
+        notifyRC(res_packet);
         return (res_packet != null && res_packet.getResponse_code() == ProjectConstants.SUCCESS);
+    }
+
+    /* Notify the RCs */
+    public static boolean notifyRC(ClientResponsePacket res) throws IOException {
+        Socket rc_conn = null;
+        ClientRequestPacket req_packet = new ClientRequestPacket();
+        ClientResponsePacket res_packet = null;
+        req_packet.setCommand(ProjectConstants.ADD_MEM_NODES);
+        for (int i = 0; i < res.getRc_list().size(); i++) {
+            rc_conn = new Socket(res.getRc_list().get(i).ip, ProjectConstants.RC_LISTEN_PORT);
+            req_packet.setIp_address(host_address.getHostAddress());
+            PacketTransfer.sendRequest(req_packet, rc_conn);
+            res_packet = PacketTransfer.recv_response(rc_conn);
+            System.out.println("Notified RC : " + res_packet.getResponse_code());
+        }
+        return res_packet.getResponse_code() == ProjectConstants.SUCCESS;
     }
 
     public static Date getUnixTimeGenerator() {

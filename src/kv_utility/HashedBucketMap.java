@@ -14,8 +14,9 @@ public class HashedBucketMap {
     }
 
     public void add(int hash_key, String key, ValueDetail val) {
+        System.out.println(bucket + ":" + hash_key + ":" + key + ":" + val);
         if (bucket.containsKey(hash_key)) {
-            bucket.get(key).put(key, val);
+            bucket.get(hash_key).put(key, val);
         } else {
             HashMap<String, ValueDetail> temp = new HashMap<>();
             temp.put(key, val);

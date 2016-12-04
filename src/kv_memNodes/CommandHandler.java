@@ -24,7 +24,7 @@ public class CommandHandler
             res_packet.setResponse_code(ProjectConstants.SUCCESS);
             res_packet.setVal(val);
             /* Update the time stamp */
-            val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
+            val.setLast_access_write(MemNodeProc.getUnixTimeGenerator().getTime());
             /* Update the list */
             System.out.println("Updating list process : " + MemNodeProc.getTime_sorted_list().removeElement(val));
             MemNodeProc.getTime_sorted_list().addFirst(val);
@@ -37,8 +37,9 @@ public class CommandHandler
         ValueDetail val = new ValueDetail();
         val.setValue(req_packet.getVal().getValue());
         val.setHashed_value(req_packet.getVal().getHashed_value());
-        val.setUnixTS(MemNodeProc.getUnixTimeGenerator().getTime());
-
+        val.setUnixTS(req_packet.getVal().getUnixTS());
+        val.setLast_access_write(MemNodeProc.getUnixTimeGenerator().getTime());
+        System.out.println("Key got for put : " + req_packet.getKey() + ":" + req_packet.getStorage_type() + ":" + req_packet.getVal().getValue());
         /* Add to data store */
         if (MemNodeProc.getData_store().containsKey(req_packet.getKey(), req_packet.getStorage_type()))
             MemNodeProc.getTime_sorted_list().removeElement(val);
@@ -55,8 +56,11 @@ public class CommandHandler
         return res_packet;
     }
 
-    // public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
+    public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
     {
+        ClientResponsePacket res_packet = new ClientResponsePacket();
 
+
+        return res_packet;
     }
 }

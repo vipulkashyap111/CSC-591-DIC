@@ -11,6 +11,7 @@ public class KeyValueHM {
 
     public KeyValueHM() {
         this.in_mem_data_store = new ConcurrentHashMap<>();
+        this.in_mem_repl_data_store = new ConcurrentHashMap<>();
     }
 
     public boolean containsKey(String key, KVType storage_type) {

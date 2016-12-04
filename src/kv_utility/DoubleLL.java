@@ -43,7 +43,7 @@ public class DoubleLL {
             tail = element;
         }
         size++;
-        System.out.println("adding: " + element);
+        System.out.println("adding: " + element.getValue());
     }
 
     /**

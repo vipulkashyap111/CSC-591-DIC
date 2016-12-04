@@ -46,7 +46,8 @@ public class Ring {
                 int nextNodeId = ring.getNextValue(nodeId, i);
                 System.out.println("nextNode id: " + nextNodeId);
                 syncDetails.setIp_Address(nodeIdToIp.get(nextNodeId));
-                syncDetails.setEnd_range(ring.getPrevValue(nextNodeId, 3));
+                int endVal = ring.getPrevValue(nextNodeId, 3);
+                syncDetails.setEnd_range((endVal == 0) ? 100 : endVal);
                 syncDetails.setStart_range(ring.getPrevValue(nextNodeId, 4) + 1);
                 helper.syncIps.add(syncDetails);
             }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by gmeneze on 12/3/16.
  */
 public class MemNodeSyncHelper {
-    private ArrayList<String> prevIps;
-    private ArrayList<String> nextIps;
+    public ArrayList<String> prevIps;
+    public ArrayList<String> nextIps;
 
     public MemNodeSyncHelper() {
         prevIps = new ArrayList<String>();

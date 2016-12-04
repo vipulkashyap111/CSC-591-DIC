@@ -6,29 +6,37 @@ import java.net.Socket;
 import kv_utility.*;
 
 public class ClientRequestHandler {
-	public String handle(ClientRequestObject obj){
+	public ClientResponsePacket handle(String proxyIPAddrress, ClientRequestObject obj){
+        ClientResponsePacket res_packet = new ClientResponsePacket();
 		try {
-            Socket s = new Socket("152.46.17.199", ProjectConstants.PR_LISTEN_PORT);
+            Socket s = new Socket(proxyIPAddrress, ProjectConstants.PR_LISTEN_PORT);
             ClientRequestPacket req_packet = new ClientRequestPacket();
-            ValueDetail val = new ValueDetail();
-            val.setValue(obj.getValue());
+
             req_packet.setCommand(ProjectConstants.GET_RC);
             PacketTransfer.sendRequest(req_packet, s);
-            ClientResponsePacket res_packet = PacketTransfer.recv_response(s);
+            res_packet = PacketTransfer.recv_response(s);
             System.out.println("Res:" + res_packet.getRc().ip);
+
+            ValueDetail val = new ValueDetail();
+            val.setValue(obj.getValue());
 
             s = new Socket(res_packet.getRc().ip, ProjectConstants.RC_LISTEN_PORT);
             req_packet = new ClientRequestPacket();
-            req_packet.setCommand(ProjectConstants.PUT);
-            req_packet.setKey("Test");
-            req_packet.setVal(val);
+
+            req_packet.setCommand(obj.getCommand());
+            req_packet.setKey(obj.getKey());
+
+            if(obj.getCommand() == ProjectConstants.PUT){
+                req_packet.setVal(val);
+            }
+            System.out.println("Sending request to RC with following commands: COMMAND: " + req_packet.getCommand() + " KEY: " + req_packet.getKey() + " VALUE: " + req_packet.getVal().getValue());
             PacketTransfer.sendRequest(req_packet, s);
             res_packet = PacketTransfer.recv_response(s);
             System.out.println("Message of operation : " + res_packet.getMessage());
-            return res_packet.getMessage();
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-		return "Error";
+        return res_packet;
 	}
 }

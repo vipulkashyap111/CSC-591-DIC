@@ -1,2 +1,3 @@
 .DS_Store
 *.class
+./src/kv_slack/node_modules/

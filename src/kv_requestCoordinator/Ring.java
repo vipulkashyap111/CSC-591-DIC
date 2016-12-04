@@ -37,9 +37,14 @@ public class Ring {
         String[] threeNodeIp = new String[3];
         int j = 0;
         System.out.println("The number of registered memory nodes : " + nodeIdToIp.size());
-        for (int i = keyValue; i < 100; i++) {
-            if (nodeIdToIp.containsKey(i)) {
-                threeNodeIp[j] = nodeIdToIp.get(i);
+
+        for (Integer key : nodeIdToIp.keySet()) {
+            System.out.println("XXXX  Memory node is: " + nodeIdToIp.get(key) + " key is: " + key + " XXXX");
+        }
+
+        for (int i = keyValue; i <= 200; i++) {
+            if (nodeIdToIp.containsKey(i % 100)) {
+                threeNodeIp[j] = nodeIdToIp.get(i % 100);
                 j++;
 
                 if (j == nodeIdToIp.size() || j == 3)

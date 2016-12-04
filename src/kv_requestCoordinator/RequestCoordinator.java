@@ -52,7 +52,7 @@ public class RequestCoordinator {
         System.out.println("PUT - 1");
         for (int i = 0; i < 3; i++) {
             try {
-                System.out.println("PUT - 1" + i);
+                System.out.println("PUT - 1" + i + " in address: " + threeIpAddresses[i]);
                 socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
@@ -109,6 +109,7 @@ public class RequestCoordinator {
 
         for (int i = 0; i < 3; i++) {
             try {
+                System.out.println("GET - 1" + i + " in address: " + threeIpAddresses[i]);
                 socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
@@ -120,9 +121,11 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+
             socket[0].close();
             socket[1].close();
             socket[2].close();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -153,15 +156,20 @@ public class RequestCoordinator {
         request.setVal(sucessPacket.getVal());
 
         for (int i = 0; i < 3; i++) {
+            System.out.println("response packet details are: " + " response code: " + response[i].getResponse_code() + " Time: " + response[i].getVal().getUnixTS() + " maxTime is: " + maxTime);
             if (response[i].getResponse_code() == ProjectConstants.FAILURE || response[i].getVal().getUnixTS() < maxTime) {
-                request.setCommand(ProjectConstants.PUT);
-
-                if (i == 0)
-                    request.setReplicate_ind(true);
-                else
-                    request.setReplicate_ind(false);
-
-                PacketTransfer.sendRequest(requestPacket, socket[i]);
+                try {
+                    Socket newSocket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                    request.setCommand(ProjectConstants.PUT);
+                    if (i == 0)
+                        request.setReplicate_ind(true);
+                    else
+                        request.setReplicate_ind(false);
+                    PacketTransfer.sendRequest(requestPacket, newSocket);
+                    newSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

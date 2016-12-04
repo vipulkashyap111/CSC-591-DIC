@@ -9,7 +9,7 @@ import java.net.Socket;
  * Created by abhishek on 11/27/16.
  */
 public class PacketTransfer {
-    public static void sendRequest(ClientRequestPacket req_packet, Socket connection) {
+    public synchronized static void sendRequest(ClientRequestPacket req_packet, Socket connection) {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(connection.getOutputStream());
@@ -20,7 +20,7 @@ public class PacketTransfer {
         }
     }
 
-    public static ClientResponsePacket recv_response(Socket connection) {
+    public synchronized static ClientResponsePacket recv_response(Socket connection) {
         ObjectInputStream ois = null;
         ClientResponsePacket res_packet = null;
         try {

@@ -30,6 +30,7 @@ public class MemNodeCommunication implements Runnable {
             requestPacket.setStorage_type(KVType.ORIGINAL);
         else
             requestPacket.setStorage_type(KVType.REPLICATED);
+
         PacketTransfer.sendRequest(requestPacket, socket);
         response[threadId] = PacketTransfer.recv_response(socket);
     }

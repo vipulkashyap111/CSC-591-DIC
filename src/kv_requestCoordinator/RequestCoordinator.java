@@ -21,8 +21,19 @@ public class RequestCoordinator {
     private static ExecutorService workers;
 
     public RequestCoordinator() {
-        ring = new Ring();
+        ring = Ring.getInstance();
         workers = Executors.newFixedThreadPool(ProjectConstants.THREE);
+    }
+
+    public ClientResponsePacket addNode(ClientRequestPacket requestPacket) {
+        System.out.println("===RC object is: " + this.toString());
+        System.out.println("===Ring object is: " + ring.toString());
+        ClientResponsePacket responsePacket = new ClientResponsePacket();
+        System.out.println("request packet ip address is: " + requestPacket.getIp_address());
+        ring.addNode(requestPacket.getIp_address());
+        responsePacket.setMessage("Added Node " + requestPacket.getIp_address() + " successfully");
+        responsePacket.setResponse_code(ProjectConstants.SUCCESS);
+        return responsePacket;
     }
 
     public String[] getIpAddresses(String key) {
@@ -31,12 +42,17 @@ public class RequestCoordinator {
     }
 
     public ClientResponsePacket put(ClientRequestPacket requestPacket) {
+        //set unix time and hashvalue of key in request Packet
+        requestPacket.getVal().setUnixTS(System.nanoTime());
+        requestPacket.getVal().setHashed_value(getHash(requestPacket.getKey()));
+
         ClientResponsePacket[] response = new ClientResponsePacket[3];
         String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
         Socket[] socket = new Socket[3];
-
+        System.out.println("PUT - 1");
         for (int i = 0; i < 3; i++) {
             try {
+                System.out.println("PUT - 1" + i + " in address: " + threeIpAddresses[i]);
                 socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
@@ -44,18 +60,25 @@ public class RequestCoordinator {
                 e.printStackTrace();
             }
         }
-
+        System.out.println("PUT - 2");
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+            socket[0].close();
+            socket[1].close();
+            socket[2].close();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.println("PUT - 3");
         int failureCount = 0;
         ClientResponsePacket successPacket = null;
         ClientResponsePacket failurePacket = null;
         for (ClientResponsePacket responsePacket : response) {
+            System.out.println("PUT - 3 inner");
             if (responsePacket == null)
                 throw new RuntimeException("Response not recieved in one minute");
 
@@ -66,11 +89,13 @@ public class RequestCoordinator {
                 successPacket = responsePacket;
             }
         }
-
-        if (failureCount < 2)
+        System.out.println("PUT - 4");
+        if (failureCount < 2) {
             return successPacket;
-        else
+        }
+        else {
             return failurePacket;
+        }
     }
 
     public int getHash(String key) {
@@ -84,6 +109,7 @@ public class RequestCoordinator {
 
         for (int i = 0; i < 3; i++) {
             try {
+                System.out.println("GET - 1" + i + " in address: " + threeIpAddresses[i]);
                 socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
@@ -95,7 +121,14 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
+
+            socket[0].close();
+            socket[1].close();
+            socket[2].close();
+
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -123,15 +156,20 @@ public class RequestCoordinator {
         request.setVal(sucessPacket.getVal());
 
         for (int i = 0; i < 3; i++) {
+            System.out.println("response packet details are: " + " response code: " + response[i].getResponse_code() + " Time: " + response[i].getVal().getUnixTS() + " maxTime is: " + maxTime);
             if (response[i].getResponse_code() == ProjectConstants.FAILURE || response[i].getVal().getUnixTS() < maxTime) {
-                request.setCommand(ProjectConstants.PUT);
-
-                if (i == 0)
-                    request.setReplicate_ind(true);
-                else
-                    request.setReplicate_ind(false);
-
-                PacketTransfer.sendRequest(requestPacket, socket[i]);
+                try {
+                    Socket newSocket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                    request.setCommand(ProjectConstants.PUT);
+                    if (i == 0)
+                        request.setReplicate_ind(true);
+                    else
+                        request.setReplicate_ind(false);
+                    PacketTransfer.sendRequest(requestPacket, newSocket);
+                    newSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

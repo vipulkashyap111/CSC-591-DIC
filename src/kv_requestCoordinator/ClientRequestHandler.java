@@ -18,7 +18,7 @@ public class ClientRequestHandler implements Runnable {
     private ObjectOutputStream clientOutputStream;
     private ClientRequestPacket reqPacket;
     private RequestCoordinator rc;
-
+    private static ClientRequestHandler instance = null;
 
     public ClientRequestHandler(Socket soc) {
         this.clientSocket = soc;
@@ -53,13 +53,25 @@ public class ClientRequestHandler implements Runnable {
         ClientResponsePacket resPacket = null;
         switch (reqPacket.getCommand()) {
             case ProjectConstants.GET:
+                System.out.println("recieved GET packet");
                 resPacket = rc.get(reqPacket);
                 break;
 
             case ProjectConstants.PUT:
+                System.out.println("recieved PUT packet");
                 resPacket = rc.put(reqPacket);
                 break;
+
+            case ProjectConstants.ADD_MEM_NODES:
+                System.out.println("recieved ADD_MEM_NODES packet");
+                resPacket = rc.addNode(reqPacket);
+                break;
+
+            default:
+                resPacket.setMessage("Invalid request to Request Co-ordinator");
+                resPacket.setResponse_code(ProjectConstants.FAILURE);
         }
+        System.out.println("sending response Packet");
         send_response(resPacket);
     }
 

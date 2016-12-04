@@ -2,6 +2,7 @@ package kv_requestCoordinator;
 
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
+import kv_utility.KVType;
 import kv_utility.PacketTransfer;
 
 import java.net.Socket;
@@ -26,9 +27,10 @@ public class MemNodeCommunication implements Runnable {
     @Override
     public void run() {
         if (threadId == 0)
-            requestPacket.setReplicate_ind(true);
+            requestPacket.setStorage_type(KVType.ORIGINAL);
         else
-            requestPacket.setReplicate_ind(false);
+            requestPacket.setStorage_type(KVType.REPLICATED);
+
         PacketTransfer.sendRequest(requestPacket, socket);
         response[threadId] = PacketTransfer.recv_response(socket);
     }

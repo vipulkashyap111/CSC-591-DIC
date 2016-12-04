@@ -6,6 +6,15 @@ package kv_utility;
 public class MemNodeDetails {
     private int start_range;
     private int end_range;
+    private int ip_Address;
+
+    public int getIp_Address() {
+        return ip_Address;
+    }
+
+    public void setIp_Address(int ip_Address) {
+        this.ip_Address = ip_Address;
+    }
 
     public int getEnd_range() {
         return end_range;

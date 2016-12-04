@@ -3,16 +3,16 @@ package kv_utility;
 /**
  * Created by gmeneze on 12/3/16.
  */
-public class MemNodeDetails {
+public class MemNodeSyncDetails {
     private int start_range;
     private int end_range;
-    private int ip_Address;
+    private String ip_Address;
 
-    public int getIp_Address() {
+    public String getIp_Address() {
         return ip_Address;
     }
 
-    public void setIp_Address(int ip_Address) {
+    public void setIp_Address(String ip_Address) {
         this.ip_Address = ip_Address;
     }
 

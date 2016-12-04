@@ -1,9 +1,12 @@
 package kv_utility;
 
+import java.io.Serializable;
+
 /**
  * Created by gmeneze on 12/3/16.
  */
-public class MemNodeSyncDetails {
+public class MemNodeSyncDetails implements Serializable {
+    public static final long serialVersionUID = -3040196452457271695L;
     private int start_range;
     private int end_range;
     private String ip_Address;

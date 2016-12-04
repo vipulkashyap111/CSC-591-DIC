@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -107,14 +109,39 @@ public class MemNodeProc {
     public static boolean syncUp(ClientResponsePacket res_packet)throws IOException
     {
         /* Start the syncing request */
+        Socket mem_conn = null;
+        ClientResponsePacket data = null;
         MemNodeSyncHelper sync_nodes_list = res_packet.getMemNodeSyncHelper();
         ClientRequestPacket req_packet = new ClientRequestPacket();
-        for(MemNodeDetails node : sync_nodes_list.nextIps)
+        for(MemNodeSyncDetails node : sync_nodes_list.syncIps)
         {
             req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
             req_packet.setStart_range(node.getStart_range());
             req_packet.setEnd_range(node.getEnd_range());
             mem_conn = new Socket(node.getIp_Address(),ProjectConstants.MN_LISTEN_PORT);
+            PacketTransfer.sendRequest(req_packet,mem_conn);
+            data = PacketTransfer.recv_response(mem_conn);
+            System.out.println("Loading DS with status : " + data.getResponse_code());
+            if(data.getResponse_code() != ProjectConstants.SUCCESS)
+                return false;
+            loadSyncData(data.getSync_data());
+        }
+        return true;
+    }
+
+    public static void loadSyncData(HashMap<String,ValueDetail> data)
+    {
+        for(Map.Entry<String,ValueDetail> in : data.entrySet())
+        {
+            System.out.println("Key got for Sync : " + in.getKey() + ":" + in.getValue().getValue());
+            /* Add to data store */
+            MemNodeProc.getData_store().put(in.getKey(), in.getValue(), KVType.REPLICATED);
+
+            /* Add to Time sorted list */
+            MemNodeProc.getTime_sorted_list().addFirst(in.getValue());
+
+            /* Add to the bucket as per the hash */
+            MemNodeProc.getBucket_map().add(in.getValue().getHashed_value(), in.getKey(), in.getValue());
         }
     }
 

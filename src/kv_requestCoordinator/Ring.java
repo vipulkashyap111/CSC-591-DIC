@@ -34,11 +34,11 @@ public class Ring {
         int nodeId = ring.addNode();
         System.out.println("Adding node id: " + nodeId + " for nodeIp: " + nodeIp);
         MemNodeSyncHelper helper = new MemNodeSyncHelper();
+        helper.syncIps = new ArrayList<MemNodeSyncDetails>();
 
         /* Mem Node Sync Helper code */
         if (nodeIdToIp.size() >= 3) {
             System.out.println(" This Node QUALIFIES");
-            helper.syncIps = new ArrayList<MemNodeSyncDetails>();
 
             // Next 2 Node info
             for (int i = 1; i <= 2; i++) {

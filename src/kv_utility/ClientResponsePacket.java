@@ -15,15 +15,6 @@ public class ClientResponsePacket implements Serializable {
     private RCDetail rc = null;
     private ArrayList<RCDetail> rc_list = null;
     private MemNodeSyncHelper memNodeSyncHelper = null;
-    private MemNodeDetails memNodeDetails = null;
-
-    public MemNodeDetails getMemNodeDetails() {
-        return memNodeDetails;
-    }
-
-    public void setMemNodeDetails(MemNodeDetails memNodeDetails) {
-        this.memNodeDetails = memNodeDetails;
-    }
 
     public MemNodeSyncHelper getMemNodeSyncHelper() {
         return memNodeSyncHelper;

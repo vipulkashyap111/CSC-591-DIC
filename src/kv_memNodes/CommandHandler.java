@@ -55,12 +55,4 @@ public class CommandHandler
         res_packet.setMessage(ProjectConstants.SUCCESS_PUT);
         return res_packet;
     }
-
-    public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
-    {
-        ClientResponsePacket res_packet = new ClientResponsePacket();
-
-
-        return res_packet;
-    }
 }

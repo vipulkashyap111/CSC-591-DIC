@@ -99,7 +99,14 @@ public class MemNodeProc {
             res_packet = PacketTransfer.recv_response(rc_conn);
             System.out.println("Notified RC : " + res_packet.getResponse_code());
         }
+        syncUp(res_packet);
         return res_packet.getResponse_code() == ProjectConstants.SUCCESS;
+    }
+
+    public static boolean syncUp(ClientResponsePacket res_packet)
+    {
+        /* Start the syncing request */
+
     }
 
     public static Date getUnixTimeGenerator() {

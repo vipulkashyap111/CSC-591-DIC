@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Add memory node case updated for Request Coordinator">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Put_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PUT-META/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/Hashing.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/MakePutReq.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/DistKVStore_jar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/DistKVStore_jar2.xml" afterPath="" />
+    <list default="true" id="b6eb44f8-e0e1-4885-a617-cd79e725aeef" name="Default" comment="Added Last write Indicator">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Client_jar/Client.jar" afterPath="$PROJECT_DIR$/out/artifacts/Client_jar/Client.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/MemNode_jar/MemNodeProc.jar" afterPath="$PROJECT_DIR$/out/artifacts/MemNode_jar/MemNodeProc.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProxyProc_jar/ProxyProc.jar" afterPath="$PROJECT_DIR$/out/artifacts/ProxyProc_jar/ProxyProc.jar" />
@@ -23,15 +17,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_utility/DoubleLL.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_utility/DoubleLL.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/kv_utility/KeyValueHM.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/kv_utility/KeyValueHM.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DistKVStore/test/MakeRequest.class" afterPath="$PROJECT_DIR$/out/production/DistKVStore/test/MakeRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_guava_guava_15_0_rc1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_guava_guava_15_0_rc1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/CommandHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" afterPath="$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/DoubleLL.java" afterPath="$PROJECT_DIR$/src/kv_utility/DoubleLL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/HashedBucketMap.java" afterPath="$PROJECT_DIR$/src/kv_utility/HashedBucketMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/KeyValueHM.java" afterPath="$PROJECT_DIR$/src/kv_utility/KeyValueHM.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/kv_utility/ValueDetail.java" afterPath="$PROJECT_DIR$/src/kv_utility/ValueDetail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/MakeRequest.java" afterPath="$PROJECT_DIR$/src/test/MakeRequest.java" />
     </list>
     <ignored path="DistKVStore.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,12 +53,12 @@
         <entry file="file://$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+              <caret line="112" column="34" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
               <folding>
                 <element signature="e#1633#1634#0" expanded="true" />
                 <element signature="e#1684#1685#0" expanded="true" />
-                <element signature="e#4554#4555#0" expanded="true" />
-                <element signature="e#4587#4588#0" expanded="true" />
+                <element signature="e#4546#4547#0" expanded="true" />
+                <element signature="e#4579#4580#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,8 +77,8 @@
       <file leaf-file-name="HashedBucketMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kv_utility/HashedBucketMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="225">
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -854,7 +840,7 @@
       <workItem from="1480188438007" duration="34612000" />
       <workItem from="1480268551138" duration="31986000" />
       <workItem from="1480782463570" duration="2072000" />
-      <workItem from="1480798441358" duration="9526000" />
+      <workItem from="1480798441358" duration="9565000" />
     </task>
     <task id="LOCAL-00001" summary="Basic Packages">
       <created>1480193145476</created>
@@ -1052,22 +1038,29 @@
       <option name="project" value="LOCAL" />
       <updated>1480794146401</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added Last write Indicator">
+      <created>1480811529273</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1480811529273</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78196000" />
+    <option name="totallyTimeSpent" value="78235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.49453124" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884902" sideWeight="0.5054687" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884902" sideWeight="0.5054687" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.49730977" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.49116063" order="1" side_tool="false" content_ui="tabs" />
@@ -1135,7 +1128,8 @@
     <MESSAGE value="Added Code to request coordinator to handle addition Memory Node" />
     <MESSAGE value="Added code for serial version id" />
     <MESSAGE value="Add memory node case updated for Request Coordinator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add memory node case updated for Request Coordinator" />
+    <MESSAGE value="Added Last write Indicator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Last write Indicator" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1251,8 +1245,8 @@
           <folding>
             <element signature="e#1633#1634#0" expanded="true" />
             <element signature="e#1684#1685#0" expanded="true" />
-            <element signature="e#4554#4555#0" expanded="true" />
-            <element signature="e#4587#4588#0" expanded="true" />
+            <element signature="e#4546#4547#0" expanded="true" />
+            <element signature="e#4579#4580#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1529,12 +1523,12 @@
     <entry file="file://$PROJECT_DIR$/src/kv_memNodes/MemNodeProc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="114" column="34" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+          <caret line="112" column="34" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
           <folding>
             <element signature="e#1633#1634#0" expanded="true" />
             <element signature="e#1684#1685#0" expanded="true" />
-            <element signature="e#4554#4555#0" expanded="true" />
-            <element signature="e#4587#4588#0" expanded="true" />
+            <element signature="e#4546#4547#0" expanded="true" />
+            <element signature="e#4579#4580#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1560,8 +1554,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/kv_utility/HashedBucketMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="225">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding />
         </state>
       </provider>

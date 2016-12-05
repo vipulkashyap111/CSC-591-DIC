@@ -25,7 +25,7 @@ public class Server {
 
 
     public static void setUpServer() throws IOException, ClassNotFoundException {
-        hostAddress = InetAddress.getLocalHost();
+        //hostAddress = InetAddress.getLocalHost();
         clientRequest = new ServerSocket(ProjectConstants.RC_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
         activeClientList = new ConcurrentHashMap<String, ClientRequestHandler>();
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
@@ -95,10 +95,10 @@ public class Server {
         String proxyIpAddress = args[0];
         Socket proxySocket = null;
         ClientRequestPacket requestPacket = new ClientRequestPacket();
-        InetAddress host_address = null;
+        hostAddress = null;
 
         try {
-            host_address = InetAddress.getLocalHost();
+            hostAddress = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
@@ -111,10 +111,28 @@ public class Server {
             System.exit(1);
         }
 
-        requestPacket.setCommand(ProjectConstants.ADD_RC_NODES);
-        requestPacket.setIp_address(host_address.getHostAddress());
+        requestPacket.setCommand(ProjectConstants.GET_RC);
         PacketTransfer.sendRequest(requestPacket, proxySocket);
         ClientResponsePacket res_packet = PacketTransfer.recv_response(proxySocket);
+
+        if (res_packet.getResponse_code() == ProjectConstants.SUCCESS) {
+            Socket rcSocket = null;
+            try {
+                rcSocket = new Socket(res_packet.getRc().ip, ProjectConstants.PR_LISTEN_PORT);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+            requestPacket.setCommand(ProjectConstants.SYNC_RC_NODE);
+            PacketTransfer.sendRequest(requestPacket, rcSocket);
+            res_packet = PacketTransfer.recv_response(rcSocket);
+            Ring.setInstance(res_packet.getRcNodeSyncHelper().getRing());
+        }
+
+        requestPacket.setCommand(ProjectConstants.ADD_RC_NODES);
+        requestPacket.setIp_address(hostAddress.getHostAddress());
+        PacketTransfer.sendRequest(requestPacket, proxySocket);
+        res_packet = PacketTransfer.recv_response(proxySocket);
         System.out.println("Response Recieved : " + res_packet.getResponse_code());
         startServer();
     }

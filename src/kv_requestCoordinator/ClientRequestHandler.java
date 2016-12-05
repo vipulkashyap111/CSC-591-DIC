@@ -3,6 +3,7 @@ package kv_requestCoordinator;
 import kv_utility.ClientRequestPacket;
 import kv_utility.ClientResponsePacket;
 import kv_utility.ProjectConstants;
+import kv_utility.RCNodeSyncHelper;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -69,8 +70,15 @@ public class ClientRequestHandler implements Runnable {
 
             case ProjectConstants.ALIVE_REQUEST:
                 System.out.println("recieved ALIVE_REQUEST packet");
+                resPacket = new ClientResponsePacket();
                 resPacket.setResponse_code(ProjectConstants.SUCCESS);
                 break;
+
+            case ProjectConstants.SYNC_RC_NODE:
+                System.out.println("recieved SYNC_RC_NODE packet");
+                resPacket = new ClientResponsePacket();
+                resPacket.setRcNodeSyncHelper(new RCNodeSyncHelper());
+
             default:
                 resPacket.setMessage("Invalid request to Request Co-ordinator");
                 resPacket = new ClientResponsePacket();

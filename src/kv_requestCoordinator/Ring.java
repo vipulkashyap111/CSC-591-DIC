@@ -5,6 +5,7 @@ import kv_utility.KVType;
 import kv_utility.MemNodeSyncDetails;
 import kv_utility.MemNodeSyncHelper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,7 +15,8 @@ import java.util.HashMap;
 
 // Nodes IDs will be in the range 0-100
 
-public class Ring {
+public class Ring implements Serializable {
+    public static final long serialVersionUID = -3040196452457271695L;
     HashMap<Integer, String> nodeIdToIp;
     DoublyLinkedList ring;
     private static Ring instance = null;
@@ -28,6 +30,10 @@ public class Ring {
         if (instance.ring == null) instance.ring = new DoublyLinkedList();
         if (instance.nodeIdToIp == null) instance.nodeIdToIp = new HashMap<Integer, String>();
         return instance;
+    }
+
+    public static void setInstance(Ring new_instance) {
+        instance = new_instance;
     }
 
     public void addNode(String nodeIp, ClientResponsePacket responsePacket) throws ArrayIndexOutOfBoundsException {

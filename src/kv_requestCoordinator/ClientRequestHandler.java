@@ -67,6 +67,10 @@ public class ClientRequestHandler implements Runnable {
                 resPacket = rc.addNode(reqPacket);
                 break;
 
+            case ProjectConstants.ALIVE_REQUEST:
+                System.out.println("recieved ALIVE_REQUEST packet");
+                resPacket.setResponse_code(ProjectConstants.SUCCESS);
+                break;
             default:
                 resPacket.setMessage("Invalid request to Request Co-ordinator");
                 resPacket.setResponse_code(ProjectConstants.FAILURE);

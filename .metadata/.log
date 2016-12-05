@@ -1,0 +1,191 @@
+!SESSION 2016-12-03 17:27:47.093 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -keyring /Users/vipulkashyap/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -product nodeclipse.package.enide.product -data /Users/vipulkashyap/Documents/CSC-DIC/Project -product nodeclipse.package.enide.product -keyring /Users/vipulkashyap/.eclipse_keyring -showlocation
+
+!ENTRY com.ibm.issw.migr.osgi.liberty 4 0 2016-12-03 17:27:48.247
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.liberty. The component header value is wsadmin.xml
+
+!ENTRY com.ibm.issw.migr.osgi.liberty 4 0 2016-12-03 17:27:48.247
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.liberty. The component header value is wsadmin.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig 4 0 2016-12-03 17:27:48.249
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig 4 0 2016-12-03 17:27:48.249
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.jboss 4 0 2016-12-03 17:27:48.251
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.jboss. The component header value is component.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.jboss 4 0 2016-12-03 17:27:48.251
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.jboss. The component header value is component.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.was 4 0 2016-12-03 17:27:48.252
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.was. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.was 4 0 2016-12-03 17:27:48.252
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.was. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.wls 4 0 2016-12-03 17:27:48.253
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.wls. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wasconfig.wls 4 0 2016-12-03 17:27:48.253
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wasconfig.wls. The component header value is cell.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wsadmin 4 0 2016-12-03 17:27:48.254
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wsadmin. The component header value is wsadmin.xml
+
+!ENTRY com.ibm.issw.migr.osgi.wsadmin 4 0 2016-12-03 17:27:48.254
+!MESSAGE [SCR] Component definition XMLs not found in bundle com.ibm.issw.migr.osgi.wsadmin. The component header value is wsadmin.xml
+
+!ENTRY org.eclipse.recommenders.snipmatch.rcp 4 0 2016-12-03 17:27:48.398
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.recommenders.snipmatch.rcp [1477]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.recommenders.snipmatch.rcp [osgi.identity; osgi.identity="org.eclipse.recommenders.snipmatch.rcp"; type="osgi.bundle"; version:Version="2.2.0.v20150609-1848"; singleton:="true"] because it is exposed to package 'org.eclipse.jgit.transport' from resources org.eclipse.jgit [osgi.identity; osgi.identity="org.eclipse.jgit"; type="osgi.bundle"; version:Version="4.1.1.201511131810-r"] and org.eclipse.jgit [osgi.identity; osgi.identity="org.eclipse.jgit"; type="osgi.bundle"; version:Version="4.0.1.201506240215-r"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.recommenders.snipmatch.rcp [osgi.identity; osgi.identity="org.eclipse.recommenders.snipmatch.rcp"; type="osgi.bundle"; version:Version="2.2.0.v20150609-1848"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jgit)
+     |
+    provide: osgi.wiring.bundle: org.eclipse.jgit
+  org.eclipse.jgit [osgi.identity; osgi.identity="org.eclipse.jgit"; type="osgi.bundle"; version:Version="4.1.1.201511131810-r"]
+
+Chain 2:
+  org.eclipse.recommenders.snipmatch.rcp [osgi.identity; osgi.identity="org.eclipse.recommenders.snipmatch.rcp"; type="osgi.bundle"; version:Version="2.2.0.v20150609-1848"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.egit.core)(bundle-version>=3.2.0))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="4.0.1.201506240215-r"; osgi.wiring.bundle="org.eclipse.egit.core"; singleton:="true"
+  org.eclipse.egit.core [osgi.identity; osgi.identity="org.eclipse.egit.core"; type="osgi.bundle"; version:Version="4.0.1.201506240215-r"; singleton:="true"]
+    import: (&(osgi.wiring.package=org.eclipse.jgit.lib)(&(version>=4.0.1)(!(version>=4.1.0))))
+     |
+    export: osgi.wiring.package: org.eclipse.jgit.lib; uses:=org.eclipse.jgit.transport
+    export: osgi.wiring.package=org.eclipse.jgit.transport
+  org.eclipse.jgit [osgi.identity; osgi.identity="org.eclipse.jgit"; type="osgi.bundle"; version:Version="4.0.1.201506240215-r"]
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F10:
+Binding(COMMAND+SHIFT+F10,
+	ParameterizedCommand(Command(com.ibm.team.filesystem.ide.ui.command.showHistory,Show History,
+		Show the revision history of the currently selected file ,
+		Category(com.ibm.team.filesystem.ide.ui.category,Jazz Source Control,Jazz Source Control,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@625ae6d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F10,
+	ParameterizedCommand(Command(org.eclipse.ui.window.showSystemMenu,Show System Menu,
+		Show the system menu,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@207bf6d8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F9:
+Binding(COMMAND+SHIFT+F9,
+	ParameterizedCommand(Command(com.ibm.team.filesystem.ide.ui.command.checkin,Check-In,
+		Check-In,
+		Category(com.ibm.team.filesystem.ide.ui.category,Jazz Source Control,Jazz Source Control,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5cdb7b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F9,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.deactivateAllTasks,Deactivate Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3dcc59f5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.ibm.team.filesystem.ide.ui.command.accept,Accept,
+		Accept,
+		Category(com.ibm.team.filesystem.ide.ui.category,Jazz Source Control,Jazz Source Control,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@16b1dee7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@690337df,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F11:
+Binding(COMMAND+SHIFT+F11,
+	ParameterizedCommand(Command(com.ibm.team.filesystem.ide.ui.command.deliver,Deliver,
+		Deliver,
+		Category(com.ibm.team.filesystem.ide.ui.category,Jazz Source Control,Jazz Source Control,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@f62ae87,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F11,
+	ParameterizedCommand(Command(org.eclipse.debug.ui.commands.RunLast,Run,
+		Launch in run mode,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@50be5d6f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for COMMAND+SHIFT+-:
+Binding(COMMAND+SHIFT+-,
+	ParameterizedCommand(Command(com.ibm.etools.rpe.ZoomOut,ZoomOut,
+		,
+		Category(com.ibm.etools.rpe.category,Rich Page Editor,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@48e0e779,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+-,
+	ParameterizedCommand(Command(org.eclipse.ui.window.splitEditor,Toggle Split Editor,
+		Split or join the currently active editor.,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@38ad8c75,
+		[Parameter(Splitter.isHorizontal,Orientation,null,false)],,true),[org.eclipse.core.commands.Parameterization@6102fa90]),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-03 17:27:52.794
+!MESSAGE A conflict occurred for ALT+COMMAND+C:
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(de.bastiankrol.startexplorer.copyResourcePathToClipboardFromResourceView,Copy Resource Path to Clipboard,
+		Copies the path of the resource to the clipboard,
+		Category(de.bastiankrol.startexplorer.commands.category,StartExplorer,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@22a10b71,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.modify.method.parameters,Change Method Signature,
+		Change method signature includes parameter names and parameter order,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d67f6f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.ui 4 4 2016-12-03 17:27:55.594
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.

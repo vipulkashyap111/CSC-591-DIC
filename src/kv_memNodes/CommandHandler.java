@@ -1,9 +1,6 @@
 package kv_memNodes;
 
-import kv_utility.ClientRequestPacket;
-import kv_utility.ClientResponsePacket;
-import kv_utility.ProjectConstants;
-import kv_utility.ValueDetail;
+import kv_utility.*;
 
 import java.util.HashMap;
 
@@ -63,10 +60,10 @@ public class CommandHandler
     {
         HashMap<String,ValueDetail> total_data = null;
         /* If original is being maintained by new added one then move to replicated one */
-        if()
-            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),req_packet.);
+        if(req_packet.getStorage_type() == KVType.ORIGINAL)
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),true);
         else
-            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),req_packet.);
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),false);
         /* Send this list back to new node */
         ClientResponsePacket res_packet = new ClientResponsePacket();
         res_packet.setResponse_code(ProjectConstants.SUCCESS);

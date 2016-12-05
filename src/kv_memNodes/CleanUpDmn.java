@@ -16,6 +16,7 @@ public class CleanUpDmn extends Thread {
         System.out.println("Starting the CleanUp DMN");
         while (ProjectGlobal.is_CLEANUP_on)
         {
+            /* Need to add synchronization since clean up and addition to list should not happen at the same time */
             System.out.println("Checking for cleanup values....");
             checkForOldKeys();
             try

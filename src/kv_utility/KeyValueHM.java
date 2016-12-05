@@ -39,8 +39,8 @@ public class KeyValueHM {
     public void migrate(KVType type,String key)
     {
         if(type == KVType.ORIGINAL)
-            in_mem_repl_data_store.put(key,in_mem_data_store.get(key));
+            in_mem_repl_data_store.put(key,in_mem_data_store.remove(key));
         else
-            in_mem_data_store.put(key,in_mem_repl_data_store.get(key));
+            in_mem_data_store.put(key,in_mem_repl_data_store.remove(key));
     }
 }

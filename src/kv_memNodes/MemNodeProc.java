@@ -120,7 +120,7 @@ public class MemNodeProc {
             req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
             req_packet.setStart_range(node.getStart_range());
             req_packet.setEnd_range(node.getEnd_range());
-            req_packet.setKVType();
+            req_packet.setStorage_type(node.getStorage_type());
             mem_conn = new Socket(node.getIp_Address(),ProjectConstants.MN_LISTEN_PORT);
             PacketTransfer.sendRequest(req_packet,mem_conn);
             data = PacketTransfer.recv_response(mem_conn);
@@ -128,7 +128,7 @@ public class MemNodeProc {
             " and range " + node.getStart_range() + ":" + node.getEnd_range() + " and ip : " + node.getIp_Address());
             if(data.getResponse_code() != ProjectConstants.SUCCESS)
                 return false;
-            loadSyncData(data.getSync_data(),);
+            loadSyncData(data.getSync_data(),node.getStorage_type());
         }
         return true;
     }

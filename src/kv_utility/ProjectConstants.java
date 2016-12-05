@@ -7,7 +7,7 @@ public class ProjectConstants {
     public static final int MN_LISTEN_PORT = 5000;
     public static final int RC_LISTEN_PORT = 7000;
     public static final int PR_LISTEN_PORT = 7001;
-    public static final int ALIVE_LISTEN_PORT = 7500;
+    public static final int ALIVE_REQUEST = 50;
     public static final int REQUEST_BACK_LOG = 25;
     public static final int NUM_OF_WORKERS = 20;
     public static final int CLEAN_UP_WT_TM = 10;

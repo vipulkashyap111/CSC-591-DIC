@@ -2,3 +2,8 @@
 /out/*
 *.class
 ./src/kv_slack/node_modules/
+.idea/*
+.metadata/*
+.ssh/*
+/RemoteSystemsTempFiles/*
+clientdb.xml

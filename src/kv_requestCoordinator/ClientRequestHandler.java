@@ -73,6 +73,7 @@ public class ClientRequestHandler implements Runnable {
                 break;
             default:
                 resPacket.setMessage("Invalid request to Request Co-ordinator");
+                resPacket = new ClientResponsePacket();
                 resPacket.setResponse_code(ProjectConstants.FAILURE);
         }
         System.out.println("sending response Packet");

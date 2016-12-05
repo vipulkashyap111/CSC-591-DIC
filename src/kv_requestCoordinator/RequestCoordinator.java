@@ -72,19 +72,18 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
-
-            if (socket[0] != null)
-                socket[0].close();
-
-            if (socket[1] != null)
-                socket[1].close();
-
-            if (socket[2] != null)
-                socket[2].close();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+
+        for (int i = 0; i <= 2; i++) {
+            try {
+                if (socket[i] != null)
+                    socket[i].close();
+            } catch (IOException e) {
+                System.out.println("Socket is already closed");
+                System.out.println("moving on");
+            }
         }
 
         System.out.println("PUT - 3");
@@ -125,9 +124,11 @@ public class RequestCoordinator {
         for (int i = 0; i < 3; i++) {
             try {
                 System.out.println("GET - 1" + i + " in address: " + threeIpAddresses[i]);
-                socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
-                MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
-                workers.execute(communicate);
+                if (threeIpAddresses[i] != null) {
+                    socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                    MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
+                    workers.execute(communicate);
+                }
             } catch (IOException e) {
                 System.out.println("Node at : " + threeIpAddresses[i] + " is down.");
                 System.out.println("Moving forward");
@@ -142,7 +143,7 @@ public class RequestCoordinator {
             e.printStackTrace();
         }
 
-
+/*
         for (int i = 0; i <= 2; i++) {
             try {
                 if (socket[i] != null)
@@ -152,9 +153,12 @@ public class RequestCoordinator {
                 System.out.println("moving on");
             }
         }
-
+*/
 
         ClientResponsePacket sucessPacket = null;
+        ClientResponsePacket failurePacket = new ClientResponsePacket();
+        failurePacket.setResponse_code(ProjectConstants.FAILURE);
+
         long maxTime = -1;
         for (int i = 0; i < 3; i++) {
             if (response[i] == null) {
@@ -175,7 +179,7 @@ public class RequestCoordinator {
 
         // Key not found in any clients
         if (sucessPacket == null)
-            return response[0];
+            return failurePacket;
 
         ClientRequestPacket request = new ClientRequestPacket();
         request.setKey(sucessPacket.getKey());
@@ -193,10 +197,14 @@ public class RequestCoordinator {
                 try {
                     Socket newSocket = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
                     request.setCommand(ProjectConstants.PUT);
-                    if (i == 0)
+                    if (i == 0) {
+                        request.setStorage_type(KVType.ORIGINAL);
                         request.setReplicate_ind(true);
-                    else
+                    }
+                    else {
+                        request.setStorage_type(KVType.REPLICATED);
                         request.setReplicate_ind(false);
+                    }
                     PacketTransfer.sendRequest(requestPacket, newSocket);
                     newSocket.close();
                 } catch (IOException e) {

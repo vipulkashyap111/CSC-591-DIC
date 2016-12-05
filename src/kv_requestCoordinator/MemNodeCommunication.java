@@ -5,6 +5,7 @@ import kv_utility.ClientResponsePacket;
 import kv_utility.KVType;
 import kv_utility.PacketTransfer;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -39,5 +40,11 @@ public class MemNodeCommunication implements Runnable {
         System.out.println("!!GLEN!! sending : " + " key: " + requestPacket.getKey() + " val: " + requestPacket.getVal().getValue() + " KV Type: " + requestPacket.getStorage_type() + " IP Address: " + socket.getInetAddress().getHostAddress() + " replicate ind is: " + requestPacket.isReplicate_ind());
         PacketTransfer.sendRequest(requestPacket, socket);
         response[threadId] = PacketTransfer.recv_response(socket);
+
+        try {
+            this.socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

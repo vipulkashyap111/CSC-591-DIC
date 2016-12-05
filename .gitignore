@@ -7,3 +7,5 @@
 .ssh/*
 /RemoteSystemsTempFiles/*
 clientdb.xml
+/client/*
+/proxy/*

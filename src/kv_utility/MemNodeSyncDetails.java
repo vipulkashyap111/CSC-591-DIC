@@ -10,6 +10,15 @@ public class MemNodeSyncDetails implements Serializable {
     private int start_range;
     private int end_range;
     private String ip_Address;
+    private KVType storage_type;
+
+    public KVType getStorage_type() {
+        return storage_type;
+    }
+
+    public void setStorage_type(KVType storage_type) {
+        this.storage_type = storage_type;
+    }
 
     public String getIp_Address() {
         return ip_Address;

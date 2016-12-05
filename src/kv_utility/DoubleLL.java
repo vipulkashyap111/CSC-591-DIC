@@ -51,7 +51,8 @@ public class DoubleLL {
      *
      * @return
      */
-    public boolean removeElement(ValueDetail node) {
+    public boolean removeElement(ValueDetail node)
+    {
         if (size == 0) throw new NoSuchElementException();
         if (node.prev != null)
             node.prev.next = node.next;
@@ -64,5 +65,16 @@ public class DoubleLL {
         size--;
         System.out.println("deleted: " + node.getValue() + ":" + node.getUnixTS());
         return true;
+    }
+
+
+    public ValueDetail reverseIterator(){return tail;}
+
+    public ValueDetail getRNext(ValueDetail node)
+    {
+        if(node.prev != null)
+            return node.prev;
+        else
+            return null;
     }
 }

@@ -61,8 +61,12 @@ public class CommandHandler
 
     public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
     {
-        HashMap<String,ValueDetail> total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range());
-
+        HashMap<String,ValueDetail> total_data = null;
+        /* If original is being maintained by new added one then move to replicated one */
+        if()
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),req_packet.);
+        else
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),req_packet.);
         /* Send this list back to new node */
         ClientResponsePacket res_packet = new ClientResponsePacket();
         res_packet.setResponse_code(ProjectConstants.SUCCESS);

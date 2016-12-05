@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
  */
 public class MemNodeProc {
     private static ExecutorService workers; /* Workers threads */
+    private static CleanUpDmn cleanser = null;
     private static ServerSocket request_listerner = null;
     private static InetAddress host_address = null;
     private static RequestHandle request_handler;
@@ -35,6 +36,7 @@ public class MemNodeProc {
         }
         String proxy_address = arg[ProjectConstants.ZERO];
         try {
+            setUPMN();
             if (!notifyProxy(proxy_address)) {
                 System.out.println("Unsucessfull attemp to communicate to the proxy...");
                 return;
@@ -43,6 +45,7 @@ public class MemNodeProc {
             ex.printStackTrace();
             System.exit(ProjectConstants.SUCCESS);
         }
+        startCleanUp();
         startServer();
     }
 
@@ -56,7 +59,6 @@ public class MemNodeProc {
 
     public static void startServer() {
         try {
-            setUPMN();
             while (ProjectGlobal.is_MN_on) /* Listening on the service request */ {
                 request_handler = new RequestHandle(request_listerner.accept());
                 workers.execute(request_handler);
@@ -118,24 +120,26 @@ public class MemNodeProc {
             req_packet.setCommand(ProjectConstants.SYNC_MEM_NODE);
             req_packet.setStart_range(node.getStart_range());
             req_packet.setEnd_range(node.getEnd_range());
+            req_packet.setKVType();
             mem_conn = new Socket(node.getIp_Address(),ProjectConstants.MN_LISTEN_PORT);
             PacketTransfer.sendRequest(req_packet,mem_conn);
             data = PacketTransfer.recv_response(mem_conn);
-            System.out.println("Loading DS with status : " + data.getResponse_code());
+            System.out.println("Loading DS with status : " + data.getResponse_code() + " and size : " + data.getSync_data().size() +
+            " and range " + node.getStart_range() + ":" + node.getEnd_range() + " and ip : " + node.getIp_Address());
             if(data.getResponse_code() != ProjectConstants.SUCCESS)
                 return false;
-            loadSyncData(data.getSync_data());
+            loadSyncData(data.getSync_data(),);
         }
         return true;
     }
 
-    public static void loadSyncData(HashMap<String,ValueDetail> data)
+    public static void loadSyncData(HashMap<String,ValueDetail> data,KVType type)
     {
         for(Map.Entry<String,ValueDetail> in : data.entrySet())
         {
             System.out.println("Key got for Sync : " + in.getKey() + ":" + in.getValue().getValue());
             /* Add to data store */
-            MemNodeProc.getData_store().put(in.getKey(), in.getValue(), KVType.REPLICATED);
+            MemNodeProc.getData_store().put(in.getKey(), in.getValue(), type);
 
             /* Add to Time sorted list */
             MemNodeProc.getTime_sorted_list().addFirst(in.getValue());
@@ -143,6 +147,12 @@ public class MemNodeProc {
             /* Add to the bucket as per the hash */
             MemNodeProc.getBucket_map().add(in.getValue().getHashed_value(), in.getKey(), in.getValue());
         }
+    }
+
+    public static void startCleanUp()
+    {
+        cleanser = new CleanUpDmn();
+        cleanser.start();
     }
 
     public static Date getUnixTimeGenerator() {
@@ -167,5 +177,13 @@ public class MemNodeProc {
 
     public static void setTime_sorted_list(DoubleLL time_sorted_list) {
         MemNodeProc.time_sorted_list = time_sorted_list;
+    }
+
+    public static void migrate_data_to_repl(HashMap<String,ValueDetail> data)
+    {
+        for(Map.Entry<String,ValueDetail> in : data.entrySet())
+        {
+            data_store.migrate(KVType.ORIGINAL,in.getKey());
+        }
     }
 }

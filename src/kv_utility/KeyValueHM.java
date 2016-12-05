@@ -1,5 +1,6 @@
 package kv_utility;
 
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -33,5 +34,13 @@ public class KeyValueHM {
             return in_mem_data_store.put(key, value);
         else
             return in_mem_repl_data_store.put(key, value);
+    }
+
+    public void migrate(KVType type,String key)
+    {
+        if(type == KVType.ORIGINAL)
+            in_mem_repl_data_store.put(key,in_mem_data_store.get(key));
+        else
+            in_mem_data_store.put(key,in_mem_repl_data_store.get(key));
     }
 }

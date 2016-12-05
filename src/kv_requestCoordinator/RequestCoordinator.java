@@ -1,10 +1,7 @@
 package kv_requestCoordinator;
 
 import com.google.common.hash.Hashing;
-import kv_utility.ClientRequestPacket;
-import kv_utility.ClientResponsePacket;
-import kv_utility.PacketTransfer;
-import kv_utility.ProjectConstants;
+import kv_utility.*;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -55,9 +52,18 @@ public class RequestCoordinator {
         for (int i = 0; i < 3; i++) {
             try {
                 System.out.println("PUT - 1" + i + " in address: " + threeIpAddresses[i]);
-                socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
-                MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
-                workers.execute(communicate);
+                if (threeIpAddresses[i] != null) {
+                    socket[i] = new Socket(threeIpAddresses[i], ProjectConstants.MN_LISTEN_PORT);
+                    ClientRequestPacket tempPacket = new ClientRequestPacket();
+                    ValueDetail tempVal = new ValueDetail();
+                    tempVal.setHashed_value(requestPacket.getVal().getHashed_value());
+                    tempVal.setUnixTS(requestPacket.getVal().getUnixTS());
+                    tempVal.setValue(requestPacket.getVal().getValue());
+                    tempPacket.setVal(tempVal);
+                    tempPacket.setKey(requestPacket.getKey());
+                    MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, tempPacket, response);
+                    workers.execute(communicate);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,9 +72,15 @@ public class RequestCoordinator {
         try {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
-            socket[0].close();
-            socket[1].close();
-            socket[2].close();
+
+            if (socket[0] != null)
+                socket[0].close();
+
+            if (socket[1] != null)
+                socket[1].close();
+
+            if (socket[2] != null)
+                socket[2].close();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -76,23 +88,24 @@ public class RequestCoordinator {
         }
 
         System.out.println("PUT - 3");
-        int failureCount = 0;
+        int successCount = 0;
         ClientResponsePacket successPacket = null;
-        ClientResponsePacket failurePacket = null;
+        ClientResponsePacket failurePacket = new ClientResponsePacket();
+        failurePacket.setResponse_code(ProjectConstants.FAILURE);
         for (ClientResponsePacket responsePacket : response) {
             System.out.println("PUT - 3 inner");
             if (responsePacket == null)
-                throw new RuntimeException("Response not recieved in one minute");
+                continue;
 
             if (responsePacket.getResponse_code() == ProjectConstants.FAILURE) {
                 failurePacket = responsePacket;
-                failureCount++;
             } else {
+                successCount++;
                 successPacket = responsePacket;
             }
         }
         System.out.println("PUT - 4");
-        if (failureCount < 2) {
+        if (successCount >= 2) {
             return successPacket;
         }
         else {

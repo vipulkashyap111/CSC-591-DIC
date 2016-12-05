@@ -1,10 +1,13 @@
 package kv_requestCoordinator;
 
+import java.io.Serializable;
+
 /**
  * Created by gmeneze on 11/26/16.
  */
 
-class DLLNode {
+class DLLNode implements Serializable {
+    public static final long serialVersionUID = -3040196452457271695L;
     private int value;
     private DLLNode next;
     private DLLNode prev;
@@ -39,7 +42,8 @@ class DLLNode {
     }
 }
 
-public class DoublyLinkedList {
+public class DoublyLinkedList implements Serializable {
+    public static final long serialVersionUID = -3040196452457271695L;
     int value;
 
     public DLLNode top;

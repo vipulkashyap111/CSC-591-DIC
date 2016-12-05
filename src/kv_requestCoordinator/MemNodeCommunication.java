@@ -29,12 +29,14 @@ public class MemNodeCommunication implements Runnable {
         System.out.println("!!GLEN!!  before setting storage type: " + requestPacket.getStorage_type());
         if (threadId == 0) {
             requestPacket.setStorage_type(KVType.ORIGINAL);
+            requestPacket.setReplicate_ind(true);
         }
         else {
+            requestPacket.setReplicate_ind(false);
             requestPacket.setStorage_type(KVType.REPLICATED);
         }
 
-        System.out.println("!!GLEN!! sending : " + " key: " + requestPacket.getKey() + " val: " + requestPacket.getVal().getValue() + " KV Type: " + requestPacket.getStorage_type() + " IP Address: " + socket.getInetAddress().getHostAddress());
+        System.out.println("!!GLEN!! sending : " + " key: " + requestPacket.getKey() + " val: " + requestPacket.getVal().getValue() + " KV Type: " + requestPacket.getStorage_type() + " IP Address: " + socket.getInetAddress().getHostAddress() + " replicate ind is: " + requestPacket.isReplicate_ind());
         PacketTransfer.sendRequest(requestPacket, socket);
         response[threadId] = PacketTransfer.recv_response(socket);
     }

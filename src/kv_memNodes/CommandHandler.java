@@ -1,9 +1,8 @@
 package kv_memNodes;
 
-import kv_utility.ClientRequestPacket;
-import kv_utility.ClientResponsePacket;
-import kv_utility.ProjectConstants;
-import kv_utility.ValueDetail;
+import kv_utility.*;
+
+import java.util.HashMap;
 
 /**
  * Created by abhishek on 11/26/16.
@@ -32,13 +31,15 @@ public class CommandHandler
         return res_packet;
     }
 
-    public static ClientResponsePacket handlePut(ClientRequestPacket req_packet) {
+    public static ClientResponsePacket handlePut(ClientRequestPacket req_packet)
+    {
         ClientResponsePacket res_packet = new ClientResponsePacket();
         ValueDetail val = new ValueDetail();
         val.setValue(req_packet.getVal().getValue());
         val.setHashed_value(req_packet.getVal().getHashed_value());
         val.setUnixTS(req_packet.getVal().getUnixTS());
         val.setLast_access_write(MemNodeProc.getUnixTimeGenerator().getTime());
+        val.setKey(req_packet.getKey());
         System.out.println("Key got for put : " + req_packet.getKey() + ":" + req_packet.getStorage_type() + ":" + req_packet.getVal().getValue());
         /* Add to data store */
         if (MemNodeProc.getData_store().containsKey(req_packet.getKey(), req_packet.getStorage_type()))
@@ -58,9 +59,16 @@ public class CommandHandler
 
     public static ClientResponsePacket handleSync(ClientRequestPacket req_packet)
     {
+        HashMap<String,ValueDetail> total_data = null;
+        /* If original is being maintained by new added one then move to replicated one */
+        if(req_packet.getStorage_type() == KVType.ORIGINAL)
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),true);
+        else
+            total_data = MemNodeProc.getBucket_map().getDSListFromBucket(req_packet.getStart_range(),req_packet.getEnd_range(),false);
+        /* Send this list back to new node */
         ClientResponsePacket res_packet = new ClientResponsePacket();
-
-
+        res_packet.setResponse_code(ProjectConstants.SUCCESS);
+        res_packet.setSync_data(total_data);
         return res_packet;
     }
 }

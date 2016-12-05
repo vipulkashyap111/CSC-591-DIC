@@ -1,5 +1,7 @@
 package kv_utility;
 
+import kv_memNodes.MemNodeProc;
+
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,5 +24,24 @@ public class HashedBucketMap {
             temp.put(key, val);
             bucket.put(hash_key, temp);
         }
+    }
+
+    public HashMap<String,ValueDetail> getDSListFromBucket(int start,int end,boolean should_removed)
+    {
+        HashMap<String,ValueDetail> res = new HashMap<>();
+        HashMap<String,ValueDetail> hm = new HashMap<>();
+        for(int i = start;i <= end;i++)
+        {
+            if(!bucket.containsKey(i%100))
+                continue;
+            res.putAll(bucket.get(i%100));
+            if (should_removed)
+                MemNodeProc.migrate_data_to_repl(bucket.get(i%100));
+        }
+        return res;
+    }
+
+    public void removeAll(int hash, String key) {
+        bucket.get(hash).remove(key);
     }
 }

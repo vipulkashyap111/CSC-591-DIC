@@ -2,6 +2,7 @@ package kv_utility;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by gmeneze on 11/26/16.
@@ -15,7 +16,7 @@ public class ClientResponsePacket implements Serializable {
     private RCDetail rc = null;
     private ArrayList<RCDetail> rc_list = null;
     private MemNodeSyncHelper memNodeSyncHelper = null;
-
+    private HashMap<String,ValueDetail> sync_data = null;
     public MemNodeSyncHelper getMemNodeSyncHelper() {
         return memNodeSyncHelper;
     }
@@ -70,5 +71,13 @@ public class ClientResponsePacket implements Serializable {
 
     public void setRc_list(ArrayList<RCDetail> rc_list) {
         this.rc_list = rc_list;
+    }
+
+    public HashMap<String, ValueDetail> getSync_data() {
+        return sync_data;
+    }
+
+    public void setSync_data(HashMap<String, ValueDetail> sync_data) {
+        this.sync_data = sync_data;
     }
 }

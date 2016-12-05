@@ -41,7 +41,7 @@ public class CleanUpDmn extends Thread {
         /* Start from tail and keep on removing till all the element are removed. */
         while (last != null)
         {
-            System.out.println(last.getKey() + ":" + curr_ts + ":" + last.getUnixTS());
+            System.out.println("Scanning " + last.getKey() + ":" + curr_ts + ":" + last.getUnixTS());
             if ((curr_ts - last.getLast_access_write()) < ProjectConstants.OLD_THRESHOLD)
                 break;
             prev = last;

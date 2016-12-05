@@ -3,7 +3,6 @@ package kv_proxy;
 import kv_utility.*;
 
 import java.io.IOException;
-import java.net.Proxy;
 import java.net.Socket;
 
 /**
@@ -21,10 +20,11 @@ public class HealthCheck extends Thread
         req_packet.setCommand(ProjectConstants.ALIVE_REQUEST);
         while(ProjectGlobal.is_alive_server_on)
         {
+            System.out.println("Health Check for RC...");
             try
             {
-                checkRC();
                 Thread.sleep(ProjectConstants.HEALTH_CHECK);
+                checkRC();
             }
             catch (Exception ex)
             {
@@ -33,14 +33,19 @@ public class HealthCheck extends Thread
         }
     }
 
-    public void checkRC() throws IOException
+    public void checkRC()
     {
         if(ProxyProc.ps.rc_data == null)
             return;
 
         for(int i = 0;i < ProxyProc.ps.rc_data.getSize();i++)
         {
-            conn = new Socket(ProxyProc.ps.rc_data.get(i).ip,ProjectConstants.RC_LISTEN_PORT);
+            try {
+                conn = new Socket(ProxyProc.ps.rc_data.get(i).ip, ProjectConstants.RC_LISTEN_PORT);
+            } catch (IOException ex) {
+                ProxyProc.ps.rc_data.remove(i);
+                continue;
+            }
             PacketTransfer.sendRequest(req_packet,conn);
             res_packet = PacketTransfer.recv_response(conn);
             System.out.println("Found RC : " + ProxyProc.ps.rc_data.get(i).ip + ":" + res_packet.getResponse_code());

@@ -37,6 +37,7 @@ public class KeyValueHM {
 
     public void migrate(KVType type,String key)
     {
+        System.out.println("Migrating data to repl :" + key + ":" + in_mem_data_store.get(key));
         if(type == KVType.ORIGINAL)
             in_mem_repl_data_store.put(key,in_mem_data_store.remove(key));
         else

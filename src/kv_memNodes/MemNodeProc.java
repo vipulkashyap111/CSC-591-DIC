@@ -180,6 +180,7 @@ public class MemNodeProc {
 
     public static void migrate_data_to_repl(HashMap<String,ValueDetail> data)
     {
+        System.out.println("Starting Migrating Data to REPL");
         for(Map.Entry<String,ValueDetail> in : data.entrySet())
         {
             data_store.migrate(KVType.ORIGINAL,in.getKey());

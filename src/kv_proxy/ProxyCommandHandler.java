@@ -15,7 +15,8 @@ public class ProxyCommandHandler {
         ClientResponsePacket res_packet = new ClientResponsePacket();
         RCDetail rcd = null;
         ProxyServer ps_inst = ProxyProc.ps;
-        rcd = ps_inst.rc_data.get(ps_inst.getNextIndex());
+        if (ps_inst.rc_data.getSize() != 0)
+            rcd = ps_inst.rc_data.get(ps_inst.getNextIndex());
         if (rcd == null) {
             System.out.println("No Request Co-Ordinator Found..");
             res_packet.setMessage(ProjectConstants.MESG_RCNF);

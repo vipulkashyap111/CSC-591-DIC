@@ -16,7 +16,6 @@ public class HashedBucketMap {
     }
 
     public void add(int hash_key, String key, ValueDetail val) {
-        System.out.println(bucket + ":" + hash_key + ":" + key + ":" + val);
         if (bucket.containsKey(hash_key)) {
             bucket.get(hash_key).put(key, val);
         } else {
@@ -35,13 +34,16 @@ public class HashedBucketMap {
             if(!bucket.containsKey(i%100))
                 continue;
             res.putAll(bucket.get(i%100));
-            if (should_removed)
-                MemNodeProc.migrate_data_to_repl(bucket.get(i%100));
+            if (should_removed) {
+                System.out.println("Migration Size : " + bucket.get(i % 100).size());
+                MemNodeProc.migrate_data_to_repl(bucket.get(i % 100));
+            }
         }
         return res;
     }
 
     public void removeAll(int hash, String key) {
+        System.out.println("Removing from HashBucket : " + hash + ":" + key);
         bucket.get(hash).remove(key);
     }
 }

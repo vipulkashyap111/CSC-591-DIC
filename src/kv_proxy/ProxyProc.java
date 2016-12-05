@@ -8,9 +8,11 @@ public class ProxyProc {
 
     public static void main(String[] arg)
     {
-        /* Start the heart beat checker */
-        System.out.println("Starting Proxy server");
+        System.out.println("Starting Proxy Server");
         ps = new ProxyServer();
+        /* Start the heart beat checker */
+        HealthCheck hc = new HealthCheck();
+        hc.start();
         ps.start();
     }
 }

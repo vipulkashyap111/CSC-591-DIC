@@ -10,8 +10,8 @@ public class ProjectConstants {
     public static final int ALIVE_REQUEST = 50;
     public static final int REQUEST_BACK_LOG = 25;
     public static final int NUM_OF_WORKERS = 20;
-    public static final int CLEAN_UP_WT_TM = 100000;
-    public static final int OLD_THRESHOLD = 3000;
+    public static final int CLEAN_UP_WT_TM = 1000000;
+    public static final int OLD_THRESHOLD = 200000;
     public static final int HEALTH_CHECK = 5000;
     public static final int ONE = 1;
     public static final int THREE = 3;

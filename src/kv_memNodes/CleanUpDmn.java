@@ -41,11 +41,11 @@ public class CleanUpDmn extends Thread {
         /* Start from tail and keep on removing till all the element are removed. */
         while (last != null)
         {
-            System.out.println(curr_ts + ":" + last.getUnixTS());
+            System.out.println(last.getKey() + ":" + curr_ts + ":" + last.getUnixTS());
             if ((curr_ts - last.getUnixTS()) < ProjectConstants.OLD_THRESHOLD)
                 break;
             prev = last;
-            last = value_list.getRNext(last);
+            last = value_list.getRNext(prev);
             System.out.println("Removing obsolete value data : " + prev.getKey());
             MemNodeProc.removeAll(prev);
         }

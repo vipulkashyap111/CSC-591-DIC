@@ -16,8 +16,14 @@ public class CommandHandler
         ClientResponsePacket res_packet = new ClientResponsePacket();
         ValueDetail val = MemNodeProc.getData_store().get(req_packet.getKey(), req_packet.getStorage_type());
         if (val == null) {
+            /* Check another list */
+            val = MemNodeProc.getData_store().get(req_packet.getKey(), req_packet.getStorage_type() == KVType.ORIGINAL ? KVType.REPLICATED : KVType.ORIGINAL);
+        }
+        System.out.println("Got value : " + req_packet.getKey() + ":" + val + ":" + req_packet.getStorage_type());
+        if (val == null) {
             res_packet.setMessage(ProjectConstants.MESG_KNF);
             res_packet.setResponse_code(ProjectConstants.KNF);
+            res_packet.setVal(new ValueDetail());
         } else {
             res_packet.setMessage(ProjectConstants.MESG_KF);
             res_packet.setResponse_code(ProjectConstants.SUCCESS);

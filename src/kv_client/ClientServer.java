@@ -71,12 +71,18 @@ public class ClientServer {
 		            
 		            obj = parse(buf, command);
 		            ClientResponsePacket packet = rq.handle(proxyIpAddress, obj);
-		            String value = packet.getVal().getValue();
                     String response;
-		            if(value != null){
-                        response = packet.getMessage() + " " + packet.getVal().getValue();
-                    } else
-                        response = packet.getMessage();
+		            if(packet.getResponse_code() == ProjectConstants.SUCCESS){
+                        String value = packet.getVal().getValue();
+
+                        if(value != null){
+                            response = packet.getMessage() + " " + packet.getVal().getValue();
+                        } else
+                            response = packet.getMessage();
+                    } else{
+		                response = "Failure while doing the operation!";
+                    }
+
 
 		            // RESPONSE Headers
 		            Headers responseHeaders = he.getResponseHeaders();

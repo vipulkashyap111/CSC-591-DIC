@@ -1,7 +1,5 @@
 package kv_utility;
 
-import java.util.NoSuchElementException;
-
 /**
  * Created by abhishek on 11/27/16.
  */
@@ -53,7 +51,7 @@ public class DoubleLL {
      */
     public boolean removeElement(ValueDetail node)
     {
-        if (size == 0) throw new NoSuchElementException();
+        if (size == 0) return false;
         if (node.prev != null)
             node.prev.next = node.next;
         else

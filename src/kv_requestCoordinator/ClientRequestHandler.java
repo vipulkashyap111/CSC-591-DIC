@@ -78,6 +78,7 @@ public class ClientRequestHandler implements Runnable {
                 System.out.println("recieved SYNC_RC_NODE packet");
                 resPacket = new ClientResponsePacket();
                 resPacket.setRcNodeSyncHelper(new RCNodeSyncHelper());
+                break;
 
             default:
                 resPacket.setMessage("Invalid request to Request Co-ordinator");

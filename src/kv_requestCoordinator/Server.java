@@ -95,6 +95,7 @@ public class Server {
         String proxyIpAddress = args[0];
         Socket proxySocket = null;
         ClientRequestPacket requestPacket = new ClientRequestPacket();
+        ClientResponsePacket res_packet = null;
         hostAddress = null;
 
         try {
@@ -113,12 +114,12 @@ public class Server {
 
         requestPacket.setCommand(ProjectConstants.GET_RC);
         PacketTransfer.sendRequest(requestPacket, proxySocket);
-        ClientResponsePacket res_packet = PacketTransfer.recv_response(proxySocket);
+        res_packet = PacketTransfer.recv_response(proxySocket);
 
         if (res_packet.getResponse_code() == ProjectConstants.SUCCESS) {
             Socket rcSocket = null;
             try {
-                rcSocket = new Socket(res_packet.getRc().ip, ProjectConstants.PR_LISTEN_PORT);
+                rcSocket = new Socket(res_packet.getRc().ip, ProjectConstants.RC_LISTEN_PORT);
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(1);
@@ -126,7 +127,20 @@ public class Server {
             requestPacket.setCommand(ProjectConstants.SYNC_RC_NODE);
             PacketTransfer.sendRequest(requestPacket, rcSocket);
             res_packet = PacketTransfer.recv_response(rcSocket);
-            Ring.setInstance(res_packet.getRcNodeSyncHelper().getRing());
+
+            if (res_packet.getRcNodeSyncHelper() != null) {
+                System.out.println("Get Ring object is: " + res_packet.getRcNodeSyncHelper().getRing().toString());
+                Ring.setInstance(res_packet.getRcNodeSyncHelper().getRing());
+            } else {
+                System.out.println("getRcNodeSyncHelper object is empty dummy!");
+            }
+        }
+
+        try {
+            proxySocket = new Socket(proxyIpAddress, ProjectConstants.PR_LISTEN_PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
 
         requestPacket.setCommand(ProjectConstants.ADD_RC_NODES);

@@ -154,8 +154,8 @@ public class MemNodeProc {
         cleanser.start();
     }
 
-    public static Date getUnixTimeGenerator() {
-        return unixTimeGenerator;
+    public static long getUnixTimeGenerator() {
+        return System.currentTimeMillis();
     }
 
     public static void setUnixTimeGenerator(Date unixTimeGenerator) {

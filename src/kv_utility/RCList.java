@@ -20,6 +20,11 @@ public class RCList {
         rc_list.add(rcd);
     }
 
+    public void remove(int index)
+    {
+        rc_list.remove(index);
+    }
+
     public RCDetail get(int index) {
         return rc_list.get(index);
     }

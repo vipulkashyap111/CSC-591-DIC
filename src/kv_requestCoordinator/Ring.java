@@ -1,6 +1,7 @@
 package kv_requestCoordinator;
 
 import kv_utility.ClientResponsePacket;
+import kv_utility.KVType;
 import kv_utility.MemNodeSyncDetails;
 import kv_utility.MemNodeSyncHelper;
 
@@ -49,6 +50,7 @@ public class Ring {
                 int endVal = ring.getPrevValue(nextNodeId, 3);
                 syncDetails.setEnd_range((endVal == 0) ? 100 : endVal);
                 syncDetails.setStart_range(ring.getPrevValue(nextNodeId, 4) + 1);
+                syncDetails.setStorage_type(KVType.REPLICATED);
                 helper.syncIps.add(syncDetails);
             }
 
@@ -60,6 +62,7 @@ public class Ring {
             syncDetails.setIp_Address(nodeIdToIp.get(nextNodeId));
             syncDetails.setStart_range(prevNodeId + 1);
             syncDetails.setEnd_range(nodeId);
+            syncDetails.setStorage_type(KVType.ORIGINAL);
             helper.syncIps.add(syncDetails);
         }
         /* Mem Node Sync Helper end */

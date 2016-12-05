@@ -6,7 +6,9 @@ package kv_proxy;
 public class ProxyProc {
     public static ProxyServer ps = null;
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg)
+    {
+        /* Start the heart beat checker */
         System.out.println("Starting Proxy server");
         ps = new ProxyServer();
         ps.start();

@@ -34,17 +34,19 @@ public class CleanUpDmn extends Thread {
     public void checkForOldKeys()
     {
         value_list = MemNodeProc.getTime_sorted_list();
-        long curr_ts = MemNodeProc.getUnixTimeGenerator().getTime();
+        long curr_ts = MemNodeProc.getUnixTimeGenerator();
         ValueDetail last = value_list.reverseIterator();
         ValueDetail prev = null;
 
         /* Start from tail and keep on removing till all the element are removed. */
         while (last != null)
         {
+            System.out.println(curr_ts + ":" + last.getUnixTS());
             if ((curr_ts - last.getUnixTS()) < ProjectConstants.OLD_THRESHOLD)
                 break;
             prev = last;
             last = value_list.getRNext(last);
+            System.out.println("Removing obsolete value data : " + prev.getKey());
             MemNodeProc.removeAll(prev);
         }
         return;

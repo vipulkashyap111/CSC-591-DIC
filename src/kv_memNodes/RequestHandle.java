@@ -48,7 +48,9 @@ public class RequestHandle implements Runnable {
         }
     }
 
-    public void handle_request(ClientRequestPacket req_packet) {
+    public void handle_request(ClientRequestPacket req_packet)
+    {
+        System.out.println("Got Client Request : " + req_packet.getCommand());
         ClientResponsePacket res_packet = null;
         switch (req_packet.getCommand()) {
             case ProjectConstants.GET:
@@ -60,6 +62,7 @@ public class RequestHandle implements Runnable {
             case ProjectConstants.SYNC_MEM_NODE:
                 res_packet = CommandHandler.handleSync(req_packet);
                 break;
+            case ProjectConstants.ADD_MEM_NODES:
             default:
                 System.out.println("Wrong Command recieved :" + req_packet.getCommand());
                 break;

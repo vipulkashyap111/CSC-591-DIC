@@ -3,7 +3,6 @@ package kv_utility;
 import kv_memNodes.MemNodeProc;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -40,5 +39,9 @@ public class HashedBucketMap {
                 MemNodeProc.migrate_data_to_repl(bucket.get(i%100));
         }
         return res;
+    }
+
+    public void removeAll(int hash, String key) {
+        bucket.get(hash).remove(key);
     }
 }

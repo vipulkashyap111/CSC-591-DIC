@@ -39,6 +39,7 @@ public class CommandHandler
         val.setHashed_value(req_packet.getVal().getHashed_value());
         val.setUnixTS(req_packet.getVal().getUnixTS());
         val.setLast_access_write(MemNodeProc.getUnixTimeGenerator().getTime());
+        val.setKey(req_packet.getKey());
         System.out.println("Key got for put : " + req_packet.getKey() + ":" + req_packet.getStorage_type() + ":" + req_packet.getVal().getValue());
         /* Add to data store */
         if (MemNodeProc.getData_store().containsKey(req_packet.getKey(), req_packet.getStorage_type()))

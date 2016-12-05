@@ -36,17 +36,17 @@ public class CleanUpDmn extends Thread {
         value_list = MemNodeProc.getTime_sorted_list();
         long curr_ts = MemNodeProc.getUnixTimeGenerator().getTime();
         ValueDetail last = value_list.reverseIterator();
+        ValueDetail prev = null;
 
         /* Start from tail and keep on removing till all the element are removed. */
         while (last != null)
         {
             if ((curr_ts - last.getUnixTS()) < ProjectConstants.OLD_THRESHOLD)
                 break;
+            prev = last;
             last = value_list.getRNext(last);
+            MemNodeProc.removeAll(prev);
         }
-        if(last.next != null)
-            last.next.prev = null;
-        last.next = null;
         return;
     }
 }

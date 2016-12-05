@@ -12,6 +12,7 @@ public class ValueDetail implements Serializable {
     private int hashed_value = 0;
     public ValueDetail prev = null;
     public ValueDetail next = null;
+    private String key = null;
 
     public String getValue() {
         return value;
@@ -43,5 +44,13 @@ public class ValueDetail implements Serializable {
 
     public void setLast_access_write(long last_access_write) {
         this.last_access_write = last_access_write;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

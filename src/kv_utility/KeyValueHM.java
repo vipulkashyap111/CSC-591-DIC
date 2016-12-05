@@ -1,6 +1,5 @@
 package kv_utility;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -42,5 +41,10 @@ public class KeyValueHM {
             in_mem_repl_data_store.put(key,in_mem_data_store.remove(key));
         else
             in_mem_data_store.put(key,in_mem_repl_data_store.remove(key));
+    }
+
+    public void removeAll(String key) {
+        in_mem_data_store.remove(key);
+        in_mem_repl_data_store.remove(key);
     }
 }

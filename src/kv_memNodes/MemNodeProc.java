@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -185,5 +184,11 @@ public class MemNodeProc {
         {
             data_store.migrate(KVType.ORIGINAL,in.getKey());
         }
+    }
+
+    public static void removeAll(ValueDetail val) {
+        data_store.removeAll(val.getKey());
+        bucket_map.removeAll(val.getHashed_value(), val.getKey());
+        time_sorted_list.removeElement(val);
     }
 }

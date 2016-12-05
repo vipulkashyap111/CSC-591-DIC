@@ -1,6 +1,7 @@
 package kv_client;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
 
 import kv_utility.*;
@@ -34,8 +35,11 @@ public class ClientRequestHandler {
             res_packet = PacketTransfer.recv_response(s);
             System.out.println("Message of operation : " + res_packet.getMessage());
 
-        } catch (IOException ex) {
+        }
+        catch (Exception ex) {
             ex.printStackTrace();
+            res_packet.setResponse_code(ProjectConstants.FAILURE);
+            return res_packet;
         }
         return res_packet;
 	}

@@ -29,8 +29,6 @@ public class Server {
         clientRequest = new ServerSocket(ProjectConstants.RC_LISTEN_PORT, ProjectConstants.REQUEST_BACK_LOG);
         activeClientList = new ConcurrentHashMap<String, ClientRequestHandler>();
         workers = Executors.newFixedThreadPool(ProjectConstants.NUM_OF_WORKERS);
-
-
     }
 
     public static void cleanUpServer() {

@@ -46,6 +46,8 @@ public class RequestCoordinator {
         requestPacket.getVal().setUnixTS(System.nanoTime());
         requestPacket.getVal().setHashed_value(getHash(requestPacket.getKey()));
 
+        System.out.println("KEY VALUE is: " + requestPacket.getKey() + " HASH is: " + getHash(requestPacket.getKey()));
+
         ClientResponsePacket[] response = new ClientResponsePacket[3];
         String[] threeIpAddresses = getIpAddresses(requestPacket.getKey());
         Socket[] socket = new Socket[3];
@@ -114,7 +116,8 @@ public class RequestCoordinator {
                 MemNodeCommunication communicate = new MemNodeCommunication(socket[i], i, requestPacket, response);
                 workers.execute(communicate);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Node at : " + threeIpAddresses[i] + " is down.");
+                System.out.println("Moving forward");
             }
         }
 
@@ -122,21 +125,31 @@ public class RequestCoordinator {
             workers.shutdown();
             workers.awaitTermination(ProjectConstants.ONE, TimeUnit.MINUTES);
 
-            socket[0].close();
-            socket[1].close();
-            socket[2].close();
-
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
 
+
+        for (int i = 0; i <= 2; i++) {
+            try {
+                if (socket[i] != null)
+                    socket[i].close();
+            } catch (IOException e) {
+                System.out.println("Socket is already closed");
+                System.out.println("moving on");
+            }
+        }
+
+
         ClientResponsePacket sucessPacket = null;
-        long maxTime = Long.MIN_VALUE;
+        long maxTime = -1;
         for (int i = 0; i < 3; i++) {
-            if (response[i] == null)
-                throw new RuntimeException("Response not recieved in one minute");
+            if (response[i] == null) {
+                System.out.println("DID NOT RECIEVE RESPONSE FROM: " + threeIpAddresses[i]);
+                System.out.println("continuing");
+                continue;
+                //throw new RuntimeException("Response not recieved in one minute");
+            }
 
             if (response[i].getResponse_code() == ProjectConstants.SUCCESS) {
 
@@ -156,6 +169,12 @@ public class RequestCoordinator {
         request.setVal(sucessPacket.getVal());
 
         for (int i = 0; i < 3; i++) {
+            if (response[i] == null) {
+                System.out.println("DID NOT RECIEVE RESPONSE FROM: " + threeIpAddresses[i]);
+                System.out.println("continuing");
+                continue;
+            }
+
             System.out.println("response packet details are: " + " response code: " + response[i].getResponse_code() + " Time: " + response[i].getVal().getUnixTS() + " maxTime is: " + maxTime);
             if (response[i].getResponse_code() == ProjectConstants.FAILURE || response[i].getVal().getUnixTS() < maxTime) {
                 try {

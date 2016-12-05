@@ -8,4 +8,5 @@ public class ProjectGlobal {
     public static boolean is_RC_on = true;
     public static boolean is_CLEANUP_on = true;
     public static boolean is_PROXY_on = true;
+    public static boolean is_alive_server_on = true;
 }

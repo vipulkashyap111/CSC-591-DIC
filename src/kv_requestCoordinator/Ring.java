@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class Ring implements Serializable {
     public static final long serialVersionUID = -3040196452457271695L;
     HashMap<Integer, String> nodeIdToIp;
+    HashMap<String, Integer> nodeIpToId;
     DoublyLinkedList ring;
     private static Ring instance = null;
 
@@ -29,6 +30,7 @@ public class Ring implements Serializable {
         if (instance == null) instance = new Ring();
         if (instance.ring == null) instance.ring = new DoublyLinkedList();
         if (instance.nodeIdToIp == null) instance.nodeIdToIp = new HashMap<Integer, String>();
+        if (instance.nodeIpToId == null) instance.nodeIpToId = new HashMap<String, Integer>();
         return instance;
     }
 
@@ -37,8 +39,16 @@ public class Ring implements Serializable {
     }
 
     public void addNode(String nodeIp, ClientResponsePacket responsePacket) throws ArrayIndexOutOfBoundsException {
+
         System.out.println("ring object is: " + ring.toString());
-        int nodeId = ring.addNode();
+        int nodeId = 0;
+
+        if (nodeIpToId.containsKey(nodeIp)) {
+            nodeId = nodeIpToId.get(nodeIp);
+        } else {
+            nodeId = ring.addNode();
+        }
+
         System.out.println("Adding node id: " + nodeId + " for nodeIp: " + nodeIp);
         MemNodeSyncHelper helper = new MemNodeSyncHelper();
         helper.syncIps = new ArrayList<MemNodeSyncDetails>();
@@ -62,19 +72,22 @@ public class Ring implements Serializable {
 
             System.out.println("helper syncIps size: " + helper.syncIps.size());
             // new Range info
-            MemNodeSyncDetails syncDetails = new MemNodeSyncDetails();
-            int nextNodeId = ring.getNextValue(nodeId, 1);
-            int prevNodeId = ring.getPrevValue(nodeId, 1);
-            syncDetails.setIp_Address(nodeIdToIp.get(nextNodeId));
-            syncDetails.setStart_range(prevNodeId + 1);
-            syncDetails.setEnd_range(nodeId);
-            syncDetails.setStorage_type(KVType.ORIGINAL);
-            helper.syncIps.add(syncDetails);
+            if (!nodeIpToId.containsKey(nodeIp)) {
+                MemNodeSyncDetails syncDetails = new MemNodeSyncDetails();
+                int nextNodeId = ring.getNextValue(nodeId, 1);
+                int prevNodeId = ring.getPrevValue(nodeId, 1);
+                syncDetails.setIp_Address(nodeIdToIp.get(nextNodeId));
+                syncDetails.setStart_range(prevNodeId + 1);
+                syncDetails.setEnd_range(nodeId);
+                syncDetails.setStorage_type(KVType.ORIGINAL);
+                helper.syncIps.add(syncDetails);
+            }
         }
         /* Mem Node Sync Helper end */
 
         responsePacket.setMemNodeSyncHelper(helper);
         nodeIdToIp.put(nodeId, nodeIp);
+        nodeIpToId.put(nodeIp, nodeId);
         System.out.println("added Node Ip: " + nodeIp + " at Node id: " + nodeId);
     }
 

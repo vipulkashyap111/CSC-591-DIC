@@ -83,7 +83,6 @@ public class ClientServer {
 		                response = "Failure while doing the operation!";
                     }
 
-
 		            // RESPONSE Headers
 		            Headers responseHeaders = he.getResponseHeaders();
 		
@@ -99,17 +98,41 @@ public class ClientServer {
 		        } catch (Exception e) {
 		        	System.out.println("Exception thrown while writing response to POST");
 		        	e.printStackTrace();
+                    String response = e.getMessage();
+                    // RESPONSE Headers
+                    Headers responseHeaders = he.getResponseHeaders();
+
+                    // Send RESPONSE Headers
+
+                    //String response = "Welcome Real's HowTo test page";
+                    he.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
+                    // RESPONSE Body
+                    OutputStream os = he.getResponseBody();
+                    os.write(response.getBytes());
+                    he.close();
 		      }
 	    } else{
 	    	try{
-	    		String response = "/put should only be POST request";
+	    		String response = "/put or /get should only be POST request";
 	    	    he.sendResponseHeaders(400, response.length());
 	    	    OutputStream os = he.getResponseBody();
 	    	    os.write(response.getBytes());
 	    	    os.close();
 	    	} catch (Exception e){
-	    		System.out.println("Exception thrown while writing response to GET");
+	    		System.out.println("Exception thrown while writing response to GET/PUT");
 	    		e.printStackTrace();
+                String response = e.getMessage();
+                // RESPONSE Headers
+                Headers responseHeaders = he.getResponseHeaders();
+
+                // Send RESPONSE Headers
+
+                //String response = "Welcome Real's HowTo test page";
+                he.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
+                // RESPONSE Body
+                OutputStream os = he.getResponseBody();
+                os.write(response.getBytes());
+                he.close();
 	    	}
 	    }	            
 	    }
@@ -117,18 +140,19 @@ public class ClientServer {
 	    public ClientRequestObject parse(StringBuilder buf, String command) throws Exception{
             ClientRequestObject obj = new ClientRequestObject();
             System.out.println(command);
-
-            if(command.equals("/put"))
-                obj.setCommand(ProjectConstants.PUT);
-            else
-                obj.setCommand(ProjectConstants.GET);
             String[] pair = buf.toString().split(" ");
             if(pair.length>2)
                 throw new Exception("Invalid request body");
             if(command.equals("/put")){
-                obj.setKey(pair[0]);
-                obj.setValue(pair[1]);
+                obj.setCommand(ProjectConstants.PUT);
+                if(pair.length != 2){
+                    throw new Exception("Put request should have 2 arguments");
+                }else {
+                    obj.setKey(pair[0]);
+                    obj.setValue(pair[1]);
+                }
             } else {
+                obj.setCommand(ProjectConstants.GET);
                 obj.setKey(pair[0]);
             }
             System.out.println("Returned object is : " + obj.getCommand() + " " + obj.getKey() + " " + obj.getValue());

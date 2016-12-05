@@ -33,7 +33,6 @@ public class RequestHandle implements Runnable {
                 System.out.println("Request was not properly recieved!!");
                 return;
             }
-            System.out.println("SP : " + req_packet.getStorage_type());
             handle_request(req_packet);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -63,7 +62,6 @@ public class RequestHandle implements Runnable {
             case ProjectConstants.SYNC_MEM_NODE:
                 res_packet = CommandHandler.handleSync(req_packet);
                 break;
-            case ProjectConstants.ADD_MEM_NODES:
             default:
                 System.out.println("Wrong Command recieved :" + req_packet.getCommand());
                 break;

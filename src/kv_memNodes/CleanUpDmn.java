@@ -42,7 +42,7 @@ public class CleanUpDmn extends Thread {
         while (last != null)
         {
             System.out.println(last.getKey() + ":" + curr_ts + ":" + last.getUnixTS());
-            if ((curr_ts - last.getUnixTS()) < ProjectConstants.OLD_THRESHOLD)
+            if ((curr_ts - last.getLast_access_write()) < ProjectConstants.OLD_THRESHOLD)
                 break;
             prev = last;
             last = value_list.getRNext(prev);

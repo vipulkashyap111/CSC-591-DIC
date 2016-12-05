@@ -13,6 +13,7 @@ public class PacketTransfer {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(connection.getOutputStream());
+            oos.reset();
             oos.writeObject(req_packet);
             oos.flush();
         } catch (IOException e) {

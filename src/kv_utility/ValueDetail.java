@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by abhishek on 11/26/16.
  */
 public class ValueDetail implements Serializable {
+    public static final long serialVersionUID = -3040196452457271695L;
     private String value = null;
     private long unixTS = 0;
     private long last_access_write = 0;

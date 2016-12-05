@@ -43,7 +43,7 @@ public class RequestCoordinator {
 
     public ClientResponsePacket put(ClientRequestPacket requestPacket) {
         //set unix time and hashvalue of key in request Packet
-        requestPacket.getVal().setUnixTS(System.nanoTime());
+        requestPacket.getVal().setUnixTS(System.currentTimeMillis());
         requestPacket.getVal().setHashed_value(getHash(requestPacket.getKey()));
 
         System.out.println("KEY VALUE is: " + requestPacket.getKey() + " HASH is: " + getHash(requestPacket.getKey()));

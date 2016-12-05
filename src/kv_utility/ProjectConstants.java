@@ -28,6 +28,7 @@ public class ProjectConstants {
     public static final int GET_RC = 3;
     public static final int GET_RING = 4;
     public static final int ADD_RC_NODES = 5;
+    public static final int GET_All_KEY_VALUES = 6;
 
     /* Message Constants */
     public static final String MESG_KNF = "Unnable to fetch the key";

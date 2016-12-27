@@ -36,17 +36,16 @@ make the task of sending these requests easier, we've integrated the client with
 requests can now be sent by using Slack commands instead of typing commands on terminal
 
 ## Usage
-1. Clone this [repo](https://github.com/vipulkashyap111/CSC-591-DIC.git)
-2. Create a jar file containing code in the [src](https://github.com/vipulkashyap111/CSC-591-DIC/tree/master/src) directory
-3. Install Java v8 for proxy server, request coordinator and memory nodes. Install Java, Nodejs and npm for client. You can have a dedicated machine for proxy server, request coordinator and memory nodes can run on same machine. Since replication factor is 2, we need atleast one request coordinator and 2 memory nodes for successful write operation and 1 memory node for successful operation as per quorom protocol.
-4. Run the following files in sequence:
-  4.1 Start the proxy server on a machine: `java -cp jarfile.jar kv_proxy.ProxyProc`
-  4.2 Start n request coordinators as needed passing prox:
-      `java -cp jarfile.jar kv_requestCoordinator.Server <proxy server IP>`
-  4.3 Start atleast 2 memory nodes: `java -cp jarfile.jar kv_memNodes.MemNodeProc`
-  4.4 Start client: `java -cp jarfile.jar kv_client.ClientServer`
-  4.5 Optionally you send put/get request via Slack slash commands. Follow this [tutorial](tutorial link) to set up slack           slash command for your team and add SLACK_TOKEN_GET and SLACK_TOKEN_PUT to your environment variables. You will also           need to use [ngrok](link for ngrok) to establish a tunnel for your slack slash command inorder to run slash commands on       local server.
-      Go to [kv_slack] folder, run `npm install` to install all dependencies, run `node client.js` to start the Slack server.
+1. Clone this [repo](https://github.com/vipulkashyap111/CSC-591-DIC.git)  
+2. Create a jar file containing code in the [src](https://github.com/vipulkashyap111/CSC-591-DIC/tree/master/src) directory  
+3. Install Java v8 for proxy server, request coordinator and memory nodes. Install Java, Nodejs and npm for client. You can have a dedicated machine for proxy server, request coordinator and memory nodes can run on same machine. Since replication factor is 2, we need atleast one request coordinator and 2 memory nodes for successful write operation and 1 memory node for successful operation as per quorom protocol.  
+4. Run the following files in sequence:  
+  4.1 Start the proxy server on a machine: `java -cp jarfile.jar kv_proxy.ProxyProc`  
+  4.2 Start n request coordinators as needed passing prox: `java -cp jarfile.jar kv_requestCoordinator.Server <proxy server IP>`  
+  4.3 Start atleast 2 memory nodes: `java -cp jarfile.jar kv_memNodes.MemNodeProc <proxy server IP>`  
+  4.4 Start client: `java -cp jarfile.jar kv_client.ClientServer <proxy server IP>`  
+  4.5 Optionally you send put/get request via Slack slash commands. Follow this [tutorial](http://www.programmableweb.com/news/how-to-use-slack-api-to-build-slash-commands-powered-google-app-engine-and-go/how-to/2015/09/16) to set up slack           slash command for your team and add SLACK_TOKEN_GET and SLACK_TOKEN_PUT to your environment variables. You will also           need to use [ngrok](https://ngrok.com/) to establish a tunnel for your slack slash command inorder to run slash commands on       local server.  
+  Go to [kv_slack](https://github.com/vipulkashyap111/CSC-591-DIC/tree/master/src/kv_slack) folder, run `npm install` to install all dependencies, run `node client.js` to start the Slack server.  
 5. Perform put/get operations in the datastore using HTTP requests. You can use cURL, Postman or Slack to perform HTTP requests.
 
 ## Sample Requests:

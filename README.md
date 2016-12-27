@@ -50,6 +50,9 @@ requests can now be sent by using Slack commands instead of typing commands on t
 5. Perform put/get operations in the datastore using HTTP requests. You can use cURL, Postman or Slack to perform HTTP requests.
 
 ## Sample Requests:
-![Postman](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20Postman.png)
-![Slack put](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20slack.png)
+Postman put operation: 
+![Postman](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20Postman.png)    
+Slack put operation:  
+![Slack put](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20slack.png)  
+Slack get operation:
 ![Slack get](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20get%20slack.png)

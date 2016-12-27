@@ -4,10 +4,10 @@ Distributed In-Memory Key Value Store
 This project is based off of Amazon's Dynamo [paper](http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf) with certain design modifications as specified in the [report](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/DIC-Report%20Final.pdf).  
 
 ## System architecture: 
-[!System Architecture](add image link)  
+![System Architecture](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/System%20architecture.png)  
 The components present are Client, Proxy Server, Request Coordinators and Memory Nodes.  
 ## Sequence diagram:
-[!Sequence Diagram](add image link)  
+![Sequence Diagram](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sequence%20diagram.png)  
 
 Client sends the get or put request to the Proxy server to retrieve the IP address of the request
 coordinator. Primary purpose of request proxy server is to balance the load of incoming requests
@@ -50,5 +50,6 @@ requests can now be sent by using Slack commands instead of typing commands on t
 5. Perform put/get operations in the datastore using HTTP requests. You can use cURL, Postman or Slack to perform HTTP requests.
 
 ## Sample Requests:
-[!Postman](img url)
-[!Slack](img url)
+![Postman](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20Postman.png)
+![Slack put](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20put%20slack.png)
+![Slack get](https://github.com/vipulkashyap111/CSC-591-DIC/blob/master/images/Sample%20get%20slack.png)
